@@ -1,3 +1,63 @@
+body {
+  margin: 0px;
+}
+
+ul {
+  list-style: none;
+  padding: 0px;
+  margin: 0px;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  background-color: #a8a8e2;
+  border-bottom: 1px solid rgb(152, 128, 219);
+  box-shadow: 1px 1px rgb(152, 128, 219);
+}
+
+.navbar > li {
+  display: flex;
+  align-items: center;
+}
+.logo {
+  height: 70px;
+}
+.botonGenerico {
+  border: 0px;
+  padding: 5px 10px;
+  border-radius: 10px;
+  font-weight: bolder;
+}
+.botonGenerico:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+buscar {
+  background-color: white;
+  border: 1px solid rgb(152, 128, 219);
+  padding: 4px;
+  border-radius: 8px;
+  width: 300px;
+  display: flex;
+  justify-content: space-between;
+}
+.buscar:focus-within {
+  border: 1px solid blue;
+}
+
+.buscar > input {
+  outline: none;
+  border: 0px;
+  width: 200px;
+  height: 30px;
+}
+
+.iconoBusqueda:hover {
+  color: blue;
+}
 .App {
   text-align: center;
 }
