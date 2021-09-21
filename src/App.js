@@ -1,5 +1,7 @@
-import logo from './logo.svg';
+import logo from './media/logo.png';
 import './App.css';
+
+
 
 function App() {
   return (
@@ -7,7 +9,7 @@ function App() {
       <header>
           <ul class = "navbar">
               <li>
-                  <img src="./media/logo.png" alt="imagen" class="logo" />  
+                  <img src={logo}alt="imagen" class="logo" />  
               </li>
               <li>
                   <div class="buscar">
