@@ -1,21 +1,23 @@
 
 import './App.css';
-
+import Index from 'pages';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 function App() {
   return (
-    <div className = "App" >
-        <body>
-        <header >
-        </header>
-              <main>
-                <h1 className = "">
-                </h1>
-              </main>
-                <footer>
-                </footer>
-          </body>
-      </div>
-    
+    <Router>
+        <Switch>
+          <Route path=''>
+            <Index />
+          </Route>
+        </Switch>
+      </Router>
   );
 }
+
+
 export default App;
