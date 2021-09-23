@@ -1,4 +1,5 @@
 import Header from "components/header";
+import Footer from "components/footer";
 function Registro() {
     return (
       <div className= "max-w-7xl mx-auto px-4 py-6 sm:px-6">
@@ -8,7 +9,9 @@ function Registro() {
         <main >
             <h1>Este es el registro</h1>
         </main>
-        <footer></footer>
+        <footer>
+          <Footer/>
+        </footer>
       </div>
     );
   }
