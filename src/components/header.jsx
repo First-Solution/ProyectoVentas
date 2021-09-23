@@ -2,7 +2,7 @@
 import { Link } from 'react-router-dom';
 function Header(){
     return(
-      <div className="relative bg-white">
+      <div className=" ">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="flex justify-between items-center border-b-2 border-gray-100 py-6 md:justify-start md:space-x-10">
             <div className="flex justify-start lg:w-0 lg:flex-1">
@@ -10,6 +10,9 @@ function Header(){
                 <span className="sr-only">Workflow</span>
                 <img className="h-8 w-auto sm:h-10" src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg" alt=""/>
                 </Link>
+            </div>
+            <div className="hidden md:flex items-left justify-left md:flex-1 lg:w-0">
+            <input className="ring-1  w-full pl-7 pr-10 sm:text-sm border-gray-300 rounded-md focus:ring-indigo-300 focus:border-indigo-300 " placeholder="Buscar"/>
             </div>
             <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
             <Link to='/registro'>
