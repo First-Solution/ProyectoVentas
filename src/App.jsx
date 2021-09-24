@@ -14,12 +14,12 @@ function App() {
     <Router>
         <Switch>
           <Layout>
-            <Route path='/registro'>
+            <Route path='/registro' excact>
               <Registro/>
             </Route>
 
         
-          <Route path=''>
+          <Route path='' excact>
             <Index />
           </Route>
           </Layout>

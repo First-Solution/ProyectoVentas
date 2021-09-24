@@ -1,9 +1,7 @@
-import Header from "components/header";
-import Footer from "components/footer";
 
 function Registro() {
     return (
-      <h1>Registro</h1>
+      <div>Registro</div>
     );
   }
 export default Registro;
