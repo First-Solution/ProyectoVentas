@@ -12,18 +12,17 @@ import {
 function App() {
   return (
     <Router>
-        <Switch>
-          <Layout>
+      <Layout>
+        <Switch>   
             <Route path='/registro' excact>
               <Registro/>
             </Route>
-
-        
           <Route path='' excact>
             <Index />
           </Route>
-          </Layout>
+          
         </Switch>
+        </Layout>
       </Router>
   );
 }
