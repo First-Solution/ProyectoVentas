@@ -1,9 +1,9 @@
   
 import { Link } from 'react-router-dom';
 import logo from 'media/logo.png';
-function Header(){
+const Header  = () =>{
     return(
-      <div className=" ">
+      <header>
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="flex justify-between items-center border-b-2 border-gray-100 py-6 md:justify-start md:space-x-10">
             <div className="flex justify-start lg:w-0 lg:flex-1">
@@ -13,7 +13,7 @@ function Header(){
                 </Link>
             </div>
             <div className=" flex hidden md:flex items-between justify-between md:flex-1 lg:w-0 ml-8 border-2 border-gray-100 focus:outline-none  rounded-md ">
-              <input className=" w-full  focus:border-transparent focus:border-2 border-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-600 sm:text-sm inline-flex text:px-3" placeholder="Buscar"/>
+              <input className=" w-full  focus:border-transparent focus:border-2 border-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-600 sm:text-sm inline-flex text:px-3  rounded-md" placeholder="Buscar"/>
               <i className='fas fa-search py-2 px-3'></i>
             </div>
             <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
@@ -30,9 +30,8 @@ function Header(){
             </div>
           </div>
         </div>
-        </div>
-
-    );
+        </header>
+    )
 
   }
   export default Header;

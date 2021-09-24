@@ -2,6 +2,7 @@
 import './App.css';
 import Index from 'pages';
 import Registro from 'pages/registro';
+import Layout from "layout/layout";
 import {
   BrowserRouter as Router,
   Switch,
@@ -12,12 +13,16 @@ function App() {
   return (
     <Router>
         <Switch>
-        <Route path='/registro'>
-            <Registro/>
-          </Route>
+          <Layout>
+            <Route path='/registro'>
+              <Registro/>
+            </Route>
+
+        
           <Route path=''>
             <Index />
           </Route>
+          </Layout>
         </Switch>
       </Router>
   );
