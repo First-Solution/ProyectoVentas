@@ -12,7 +12,7 @@ const Header  = () =>{
                 <img className="h-16 w-auto sm:h-16" src={logo} alt=""/>
                 </Link>
             </div>
-            <div className=" flex hidden md:flex items-between justify-between md:flex-1 lg:w-0 ml-8 border-2 border-gray-100   rounded-md ">
+            <div className=" md:flex items-between justify-between md:flex-1 lg:w-0 ml-8 border-2 border-gray-100   rounded-md ">
               <input className=" w-full  focus:border-transparent focus:border-2 border-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-600 sm:text-sm inline-flex  rounded-md" placeholder="Buscar"/>
               <i className='fas fa-search py-2 px-3 hover:bg-indigo-600 rounded-md shadow-sm whitespace-nowrap '></i>
             </div>

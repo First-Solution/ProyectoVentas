@@ -15,7 +15,6 @@ function App() {
     <Router>
       <LayoutU> 
         <Switch>
-          
             <Route path='/registro' excact>
               <Registro/>
             </Route>
