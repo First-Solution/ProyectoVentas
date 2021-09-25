@@ -17,6 +17,8 @@ return(
           <div class="hidden md:block">
             <div class="ml-10 flex items-baseline space-x-4">
               <a href="#" class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium" aria-current="page">Ventas</a>
+              <a href="#" class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium" aria-current="page">Usuarios</a>
+              <a href="#" class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium" aria-current="page">Productos</a>
             </div>
           </div>
         </div>
@@ -37,15 +39,6 @@ return(
                   <span class="sr-only">Open user menu</span>
                   <img class="h-8 w-8 rounded-full" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAMAAACahl6sAAAAJFBMVEXMzMz09PTl5eXg4ODW1tbPz8/v7+/q6urb29vx8fHi4uLs7OwKc4KuAAAD6UlEQVR4nO2dB5aFIAwALWC9/333s67rtxtIw5c5gfMgISClKAzDMAzDMAzDMAzDMAzDMAzDMMTxrh7ati8/9G071M5Lf1EEvhvGcsc4dFnJ+K7dS8y02bhcWcwu0t94j6+bO41AU+tuFl89sZio9KpANDSr1D3M45OUa+lvPsA9io0tjZP+7g1+iNEIDKr6lzsY/J4yKmqULl4joGZUie5WM4O0wQQw6R5RSTsEEDxUmKB4KDBB8hA3ScxX34jmLgeuSs7pJceThHFwzyjnUWN6lKVYCekRO1aglyq7kBtErkmQG+TTJDIeiKl3RiYF3y6WwGklPDy+R1lKhDt6qAckwp2gZ8n0LQqPsuT3cDQi/AUXSYhIBAlJiEgECWrhu8BfAtN48Ec7yXAY4B4SiZIWf9p6jQhR9uXPvyZiIiZiIiZiIiZiIgpFXlM0moiJmMgNVCLcHiZiIiZiIpmJvGQ1viNajC/LkfUXNdourSMYd24l78a8hm2vJtkvhRmuXwtks8MZrlkiUcJa4Epd6LuCtnDtEqL2YBsVTUSbyGuC/TUirxlHyFZQZthWUqLOhT2n4fKg7lt869jEVSPjdpS3zEfQd8V/w7tDnmAX9gzzbmyyzsV+RIlouitwJLEjGE0akV3+0OPr94gdcEfuXoInXVHbRPIkokeMk0b0YDtiISx8rP0tR1zRihWxo3v/IJX0Cu7jQIl3vrnUOSjxruICC4RFFZFjezsQ5ovikT6RHO8KIn0iMd41RPpEYryriPSJpM6lpmMFUu4Okv72FfGVinxtsiY6TBQFyETkApGam5wWokwUekSNJnpGkG8iliKUXKy1ISLe1UX6BPx6Q+kvPgE8f5eep58Bzlsqc1YRMTFRNqgvAINEa4iAJ706JrhHAKt5VfX7CmC0a4118JCodDgswGlLbdKC7uSS/toLXiMCquR11vBFuGkduAQxarxz3UEtZhdVqcsNCWuNzaDEJclCjUtXYf16qwTHeTQLURdkCyEXN5DtPOv54gUhuq9hiX3wqBcH9Vh5/9gLHnTPxjiK8L6irwi6GFOX2oLdxdgbYwGzWTgj4wicaPHwF2vw6ZN7GP4GzFiSNm464T61po0NFl0agSgVfRoBsIpXqRFoIbGiJ8SPeB72GhLuFQ8fJEt5k4qLB29f6e5VC3f9K+7FNgkuX4mLf7FNgvNX4nKIjm/OIgXz5SAejt8nIj9KTMFBIs4kW23ZbZ7I1GNnkq3HxiRjj5UJ4YFVDv6n9OQ3BlDzl4Uxj67J8HdgLqu65JjfvZHkl0xx4HPPWDPVSxokNEmWJdaemvqOEy4ahquZeDARbfwAGzlHuZRNMPMAAAAASUVORK5CYII=" alt="" />
                 </button>
-              </div>
-
-              <div class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
-             
-                <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Your Profile</a>
-
-                <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-1">Settings</a>
-
-                <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-2">Sign out</a>
               </div>
             </div>
           </div>
@@ -95,7 +88,13 @@ return(
             </svg>
           </button>
         </div>
-       
+        <div class="mt-3 px-2 space-y-1">
+          <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700">Your Profile</a>
+
+          <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700">Settings</a>
+
+          <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700">Sign out</a>
+        </div>
       </div>
     </div>
   </nav>

@@ -2,7 +2,7 @@
 import './App.css';
 import Index from 'pages';
 import Registro from 'pages/registro';
-import Layout from "layout/layout";
+import Layout from "layout/layoutuser";
 import {
   BrowserRouter as Router,
   Switch,
@@ -20,7 +20,6 @@ function App() {
           <Route path='' excact>
             <Index />
           </Route>
-          
         </Switch>
         </Layout>
       </Router>

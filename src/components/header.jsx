@@ -1,8 +1,8 @@
-  
-import { Link } from 'react-router-dom';
+  import { Link } from 'react-router-dom';
 import logo from 'media/logo.png';
 const Header  = () =>{
     return(
+      <>
       <header>
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="flex justify-between items-center border-b-2 border-gray-100 py-6 md:justify-start md:space-x-10">
@@ -17,11 +17,6 @@ const Header  = () =>{
               <i className='fas fa-search py-2 px-3 hover:bg-indigo-600 rounded-md shadow-sm whitespace-nowrap '></i>
             </div>
             <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
-            <Link to='/registro'>
-              <button className="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900">
-                Registrarse
-              </button>
-              </Link>
               <Link to='/registro'>
               <button  className="sm:auto mx-auto ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700">
                 Ingresar
@@ -31,6 +26,7 @@ const Header  = () =>{
           </div>
         </div>
         </header>
+        </>
     )
 
   }
