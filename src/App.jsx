@@ -2,7 +2,8 @@
 import './App.css';
 import Index from 'pages';
 import Registro from 'pages/registro';
-import Layout from "layout/layoutuser";
+import Layout from "layout/layout";
+import LayoutU from "layout/layoutuser";
 import {
   BrowserRouter as Router,
   Switch,
@@ -12,19 +13,29 @@ import {
 function App() {
   return (
     <Router>
-      <Layout>
-        <Switch>   
+      <LayoutU> 
+        <Switch>
+          
             <Route path='/registro' excact>
               <Registro/>
             </Route>
           <Route path='' excact>
             <Index />
           </Route>
+          
         </Switch>
-        </Layout>
+       </LayoutU>
+       
+        
       </Router>
   );
 }
 
 
 export default App;
+
+          /*<LayoutU>
+            <Route path='/Admin' excact>
+            <Index />
+          </Route>
+          </LayoutU>*/
