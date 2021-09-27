@@ -54,7 +54,10 @@ return(
               <div>
                 <button type="button" className="max-w-xs bg-gray-700 rounded-full flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                   <span className="sr-only">Open user menu</span>
-                  <img className="h-8 w-8 rounded-full" src={perfil} alt=""/>
+                  <Link to = '/Admin/Perfil'>
+                    <img className="h-8 w-8 rounded-full" src={perfil} alt=""/>
+                  </Link>
+                 
                   
                 </button>
               </div>
@@ -80,7 +83,7 @@ return(
   <header className="bg-white shadow">
     <div clasNames="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
       <h1 className="text-3xl font-bold text-gray-900">
-        Dashboard
+        
       </h1>
     </div>
   </header>

@@ -18,11 +18,11 @@ import Usuarios from "pages/Admin/usuarios"
 import Productos from 'pages/Admin/productos';
 import Ventas from 'pages/Admin/ventas';
 import Admin from 'pages/Admin/index';
-
+import AdminP from 'pages/Admin/perfil';
 import Vventas from 'pages/Vendedor/ventas';
 
 import Vendedor from 'pages/Vendedor/index';
-
+import VendedorP from 'pages/Vendedor/perfil';
 
 
 
@@ -30,7 +30,7 @@ function App() {
   return (
     <Router>
       <Switch>
-      <Route path = {['/Admin','/Admin/Productos','/Admin/Ventas','/Admin/Usuarios']}>
+      <Route path = {['/Admin','/Admin/Productos','/Admin/Ventas','/Admin/Usuarios','Admin/Perfil']}>
         <LayoutAU>
             <Switch>
               <Route path='/Admin/Ventas' >
@@ -41,6 +41,9 @@ function App() {
               </Route>
               <Route path='/Admin/Usuarios' >
                 <Usuarios />
+              </Route>
+              <Route path='/Admin/Perfil' >
+                <AdminP />
               </Route>
               <Route path='/Admin'>
                 <Admin />
@@ -53,6 +56,9 @@ function App() {
             <Switch>
               <Route path='/Vendedor/Ventas' >
                 <Vventas />
+              </Route>
+              <Route path='/Vendedor/Perfil' >
+                <VendedorP />
               </Route>
               <Route path='/Vendedor' >
                 <Vendedor/>
