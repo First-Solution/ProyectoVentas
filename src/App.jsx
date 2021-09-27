@@ -1,8 +1,15 @@
 
+
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+
 import './App.css';
 import Index from 'pages';
 import Login from 'pages/login';
-
 import Layout from "layout/layout";
 import LayoutAU from "layout/layoutuser";
 import LayoutU from "layout/layoutu";
@@ -14,16 +21,11 @@ import Admin from 'pages/Admin/index';
 
 import Vventas from 'pages/Vendedor/ventas';
 
-import vend from 'pages/Vendedor/index';
+import Vendedor from 'pages/Vendedor/index';
 
 
 
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
+
 function App() {
   return (
     <Router>
@@ -52,8 +54,8 @@ function App() {
               <Route path='/Vendedor/Ventas' >
                 <Vventas />
               </Route>
-              <Route path='/Vendedor'>
-                <vend/>
+              <Route path='/Vendedor' >
+                <Vendedor/>
               </Route>
             </Switch>
         </LayoutU>
@@ -70,7 +72,6 @@ function App() {
             </Switch>
           </Layout>
         </Route>
-        
       </Switch>      
     </Router>
   );

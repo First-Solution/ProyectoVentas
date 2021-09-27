@@ -8,5 +8,4 @@ function Index() {
       </div>
     );
   }
-
   export default Index;
