@@ -12,23 +12,23 @@ return(
       <div className="flex items-center justify-between h-16">
         <div className="flex items-center">
           <div className="flex-shrink-0">
-          <Link to='/'>
+          <Link to='/Admin'>
             <img className="h-16 w-auto py-2" src={logo} alt="Workflow"/>
             </Link> 
           </div>
           <div className="hidden md:block">
             <div className="ml-10 flex items-baseline space-x-4">
-            <Link to='/Ventas'>
+            <Link to='/Admin/Ventas'>
               <button  className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
                 Ventas
               </button>                   </Link> 
-              <Link to='/Usuarios'>
+              <Link to='/Admin/Usuarios'>
               <button  className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
                 Usuarios
               </button>                 </Link> 
           
   
-              <Link to='/Productos'>
+              <Link to='/Admin/Productos'>
               <button  className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
                 Productos
               </button>              </Link> 
@@ -61,13 +61,13 @@ return(
 
               <div class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
                
-                <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Your Profile</a>
-                <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-2">Sign out</a>
+                <a href="#" className="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Your Profile</a>
+                <a href="#" className="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-2">Sign out</a>
               </div>
             </div>
           </div>
         </div>
-        <div class="-mr-2 flex md:hidden">
+        <div className="-mr-2 flex md:hidden">
           <button type="button" className="bg-gray-800 inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">
             <span className="sr-only">Open main menu</span>
          
