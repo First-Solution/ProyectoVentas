@@ -7,6 +7,7 @@ import LayoutU from "layout/layoutuser";
 import Usuarios from "pages/listausuarios"
 import Productos from 'pages/productos';
 import Ventas from 'pages/ventas';
+import Login from 'pages/login';
 import {
   BrowserRouter as Router,
   Switch,
@@ -16,10 +17,13 @@ import {
 function App() {
   return (
     <Router>
-      <Layout> 
+      <LayoutU> 
         <Switch>
             <Route path='/registro' excact>
               <Registro/>
+            </Route>
+            <Route path='/login' excact>
+              <Login/>
             </Route>
           <Route path='' excact>
             <Index />
@@ -34,7 +38,7 @@ function App() {
             <Productos />
           </Route>
         </Switch>
-       </Layout>
+       </LayoutU>
       </Router>
   );
 }
