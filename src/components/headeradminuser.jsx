@@ -14,19 +14,12 @@ return(
           </div>
           <div className="hidden md:block">
             <div className="ml-10 flex items-baseline space-x-4">
-            <Link to='/Ventas'>
-              <button  className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
-                Ventas
-              </button>                   </Link> 
-              <Link to='/Usuarios'>
-              <button  className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
-                Usuarios
-              </button>                 </Link> 
               <Link to='/Productos'>
-              <button  className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
-                Productos
-              </button>              </Link> 
-              </div>
+                  <button  className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
+                    Compras
+                  </button>             
+              </Link> 
+            </div>
           </div>
         </div>
         <div class="hidden md:block">

@@ -4,6 +4,9 @@ import Index from 'pages';
 import Registro from 'pages/registro';
 import Layout from "layout/layout";
 import LayoutU from "layout/layoutuser";
+import Usuarios from "pages/listausuarios"
+import Productos from 'pages/productos';
+import Ventas from 'pages/ventas';
 import {
   BrowserRouter as Router,
   Switch,
@@ -13,7 +16,7 @@ import {
 function App() {
   return (
     <Router>
-      <LayoutU> 
+      <Layout> 
         <Switch>
             <Route path='/registro' excact>
               <Registro/>
@@ -21,11 +24,17 @@ function App() {
           <Route path='' excact>
             <Index />
           </Route>
-          
+              <Route path='/Usuarios' excact>
+            <Usuarios />
+            </Route>
+              <Route path='/Ventas' excact>
+            <Ventas />
+          </Route>
+          <Route path='/Productos' excact>
+            <Productos />
+          </Route>
         </Switch>
-       </LayoutU>
-       
-        
+       </Layout>
       </Router>
   );
 }
