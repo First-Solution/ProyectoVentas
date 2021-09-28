@@ -37,7 +37,7 @@ function App() {
   return (
     <Router>
       <Switch>
-      <Route path = {['/Admin','/Admin/Productos','/Admin/Ventas','/Admin/Usuarios','/Admin/Perfil','/Admin/RegistroUsuario','/Admin/RegistroVenta','/Admin/RegistroProducto','/Admin/EditarVenta','/Admin/EditarProducto','/Admin/EditarUsuario']}>
+      <Route path = {['/Admin','/Admin/Productos','/Admin/Ventas','/Admin/Usuarios','/Admin/Perfil','/Admin/RegistroUsuario','/Admin/RegistroVentas','/Admin/RegistroProducto','/Admin/EditarVenta','/Admin/EditarProducto','/Admin/EditarUsuario']}>
         <LayoutAU>
             <Switch>
               <Route path='/Admin/Ventas' >
@@ -55,7 +55,7 @@ function App() {
               <Route path='/Admin/RegistroUsuario' >
                 <RegistroU />
               </Route>
-              <Route path='/Admin/RegistroVenta' >
+              <Route path='/Admin/RegistroVentas' >
                 <RegistroV />
               </Route>
               <Route path='/Admin/RegistroProducto' >
