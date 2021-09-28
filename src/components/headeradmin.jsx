@@ -7,7 +7,7 @@ const Header  = () =>{
 return(
 <>
 <div>
-  <nav className="bg-gray-700 rounded-md">
+  <nav className="bg-indigo-500 rounded-md">
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="flex items-center justify-between h-16">
         <div className="flex items-center">
@@ -42,7 +42,7 @@ return(
               <i className='fas fa-search py-2 px-3 hover:bg-gray-600 rounded-md shadow-sm whitespace-nowrap '></i>
             </div>
             <div>
-                <button type="button" className="max-w-xs bg-gray-700 rounded-full flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
+                <button type="button" className="max-w-xs bg-indigo-500  rounded-full flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                   <span className="sr-only">Settings</span>
                   <img className="h-5 w-5 rounded-full" src={settings} alt=""/>
                   
@@ -52,7 +52,7 @@ return(
 
             <div className="ml-3 relative">
               <div>
-                <button type="button" className="max-w-xs bg-gray-700 rounded-full flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
+                <button type="button" className="max-w-xs bg-indigo-500  rounded-full flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                   <span className="sr-only">Open user menu</span>
                   <Link to = '/Admin/Perfil'>
                     <img className="h-8 w-8 rounded-full" src={perfil} alt=""/>

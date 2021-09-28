@@ -76,7 +76,7 @@ const Tabla = () =>{
                 Andrea
               </td>
               <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-              <Link to='/Admin/EditarVentas'>
+              <Link to='/Vendedor/EditarVentas'>
                 <p className="text-indigo-600 hover:text-indigo-900">Edit</p>
               </Link>
               </td>
@@ -87,7 +87,7 @@ const Tabla = () =>{
         
       </div>
       <div className="min-w-full md:flex md:flex-1 lg:w-0 py-2">
-              <Link to='/Admin/RegistroVentas'>
+              <Link to='/Vendedor/RegistroVentas'>
               <button  className="sm:auto mx-auto ml-8 whitespace-nowrap px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700">
                 Agregar
               </button>
