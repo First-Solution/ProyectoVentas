@@ -5,19 +5,45 @@ function RegistroV() {
         <h1 className = "text-gray-600  mx-auto text-center text-3xl py-3 font-semibold text-opacity-75">Registro Productos</h1>
       <form>
         <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col">
+       
           <div className="-mx-3 md:flex mb-6">
             <div className="md:w-1/2 px-3 mb-6 md:mb-0">
               <label class="uppercase tracking-wide text-black text-xs font-bold mb-2" for="company">
-                Nombre De Producto
+                 ID Encargado
               </label>
               <input className="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3" id="company" type="text" placeholder="Product"/>
 
             </div>
             <div className="md:w-1/2 px-3">
               <label className="uppercase tracking-wide text-black text-xs font-bold mb-2" for="title">
-                ID
+                ID Venta
               </label>
               <input className="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3" id="title" type="text" placeholder="P10"/>
+            </div>
+          </div>
+
+          <div className="-mx-3 md:flex mb-6">
+            <div className="md:w-1/2 px-3 mb-6 md:mb-0">
+              <label class="uppercase tracking-wide text-black text-xs font-bold mb-2" for="company">
+                 ID COMPRADOR
+              </label>
+              <input className="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3" id="company" type="text" placeholder="Product"/>
+
+            </div>
+            <div className="md:w-1/2 px-3">
+              <label className="uppercase tracking-wide text-black text-xs font-bold mb-2" for="title">
+                Nombre Comprador
+              </label>
+              <input className="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3" id="title" type="text" placeholder="P10"/>
+            </div>
+          </div>
+
+          <div className="-mx-3 md:flex mb-6">
+            <div className="md:w-1/2 px-3 mb-6 md:mb-0">
+              <label class="uppercase tracking-wide text-black text-xs font-bold mb-2" for="company">
+                Producto
+              </label>
+              <input className="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3" id="company" type="text" placeholder="Product"/>
             </div>
           </div>
 
@@ -31,9 +57,15 @@ function RegistroV() {
             </div>
             <div className="md:w-1/2 px-3">
               <label className="uppercase tracking-wide text-black text-xs font-bold mb-2" for="title">
-                Cantidad
+                Fecha Inicio
               </label>
-              <input className="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3" id="title" type="text" placeholder="10"/>
+              <input className="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3" id="title" type="date" placeholder="10"/>
+            </div>
+            <div className="md:w-1/2 px-3">
+              <label className="uppercase tracking-wide text-black text-xs font-bold mb-2" for="title">
+                Fecha Final
+              </label>
+              <input className="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3" id="title" type="date" placeholder="10"/>
             </div>
           </div>
           <div className="-mx-3 md:flex mt-2">
