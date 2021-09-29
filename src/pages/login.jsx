@@ -1,12 +1,16 @@
 import { Link } from "react-router-dom";
 function Login() {
     return (
-      <div className="font-sans ">
-      <div className="relative min-h-screen flex flex-col sm:justify-center items-center bg-gray-000 ">
-          <div className="relative sm:max-w-sm w-full">
-              <div className="card bg-gray-400 shadow-lg  w-full h-full rounded-3xl absolute  transform -rotate-6"></div>
-              <div className="card bg-indigo-400 shadow-lg  w-full h-full rounded-3xl absolute  transform rotate-6"></div>
-              <div className="relative w-full rounded-3xl  px-6 py-4 bg-gray-100 shadow-md">
+        
+      <div className="font-sans  py-11">
+          <div className="font-sans  py-8">
+            
+            </div>
+      <div className="flex flex-col justify-center items-center   py-11">
+          <div className="relative sm:max-w-sm w-full justify-center h-full">
+              <div className="card bg-gray-400 shadow-lg  w-full h-full rounded-3xl absolute  transform -rotate-6 py-11" ></div>
+              <div className="card bg-indigo-400 shadow-lg  w-full h-full rounded-3xl absolute  transform rotate-6 py-11"></div>
+              <div className="relative w-full rounded-3xl  px-6 py-4 bg-gray-100 shadow-md ">
                   <label for="" className="block mt-3 text-sm text-gray-700 text-center font-semibold">
                       Iniciar Sesion
                   </label>

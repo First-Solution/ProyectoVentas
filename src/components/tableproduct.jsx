@@ -74,11 +74,13 @@ const Tabla = () =>{
               </table>
             </div>
             <div className="min-w-full md:flex md:flex-1 lg:w-0 py-2 ">
+            <div className = "py-7">
               <Link to='/Admin/RegistroProducto'>
               <button  className="sm:auto mx-auto ml-8 whitespace-nowrap px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700">
                 Agregar
               </button>
              </Link>
+             </div>
         </div>
           </div>
         </div>
