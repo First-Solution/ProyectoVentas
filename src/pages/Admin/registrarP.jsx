@@ -8,10 +8,6 @@ const RegistroP = () => {
   const [valorProducto,setvalorProducto]=useState(0);
   const [cantidadProducto,setcantidadProducto]=useState(0);
 
-      
-
-    
-        
         const EnviarAlback = () =>{
           console.log("El nombre del producto es",nombreProducto);
           console.log("El id del producto es",idProducto);
