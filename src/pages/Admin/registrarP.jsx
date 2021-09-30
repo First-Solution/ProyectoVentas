@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import React , {useEffect,useState} from 'react';
+import React , {useEffect,useState,useRef} from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 const RegistroP = () => {
@@ -8,16 +8,17 @@ const RegistroP = () => {
   const [valorProducto,setvalorProducto]=useState(0);
   const [cantidadProducto,setcantidadProducto]=useState(0);
 
-        useEffect(()=>{
-        },[nombreProducto,idProducto,valorProducto,cantidadProducto]);
+      
 
+    
+        
         const EnviarAlback = () =>{
           console.log("El nombre del producto es",nombreProducto);
           console.log("El id del producto es",idProducto);
           console.log("El valor del producto es",valorProducto);
           console.log("La cantidad del producto es",cantidadProducto);
 
-          toast.info('🦄 Registrado correctamente!', {
+          toast.success('🦄 Producto Registrado correctamente!', {
             position: "bottom-center",
             autoClose: 1000,
             hideProgressBar: false,
@@ -43,7 +44,7 @@ const RegistroP = () => {
               <input onChange={ (e) =>{
                 setNombreProducto(e.target.value);
               }}
-              value={nombreProducto}className="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3" id="company" type="text" placeholder="Product"/>
+              required value={nombreProducto}className="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3" id="company" type="text" placeholder="Product"/>
 
             </div>
             <div className="md:w-1/2 px-3">
@@ -52,7 +53,7 @@ const RegistroP = () => {
               </label>
               <input onChange ={(e) =>{
                 setidProducto(e.target.value);
-              }} vale = {idProducto}className="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3" id="title" type="text" placeholder="P10"/>
+              }} required  vale = {idProducto}className="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3" id="title" type="text" placeholder="P10"/>
             </div>
           </div>
 
@@ -63,7 +64,7 @@ const RegistroP = () => {
               </label>
               <input onChange ={(e) =>{
                 setvalorProducto(e.target.value);
-              }}vale = {valorProducto}className="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3" id="company" type="number" placeholder="Valor U/N"/>
+              }}required vale = {valorProducto}className="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3" id="company" type="number" placeholder="Valor U/N"/>
 
             </div>
             <div className="md:w-1/2 px-3">
@@ -72,13 +73,13 @@ const RegistroP = () => {
               </label>
               <input onChange ={(e) =>{
                 setcantidadProducto(e.target.value);
-              }}vale = {cantidadProducto}className="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3" id="title" type="number" placeholder="10"/>
+              }}required vale = {cantidadProducto}className="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3" id="title" type="number" placeholder="10"/>
             </div>
           </div>
           <div className="-mx-3 md:flex mt-2">
           <div className="min-w-full md:flex md:flex-1 lg:w-0  py-2">
               
-              <button type="button" onClick= {EnviarAlback}className="sm:auto mx-auto ml-8 whitespace-nowrap px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700">
+              <button type="submit" onClick= {EnviarAlback}className="sm:auto mx-auto ml-8 whitespace-nowrap px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700">
                 Registrar
               </button>
               <div className = "px-7">
