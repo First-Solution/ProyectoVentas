@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import React , {useEffect,useState} from 'react';
-import userEvent from "@testing-library/user-event";
+
 const RegistroP = () => {
   const [nombreProducto,setNombreProducto]=useState("");
   const [idProducto,setidProducto]=useState("");
@@ -16,7 +16,6 @@ const RegistroP = () => {
           console.log("El valor del producto es",valorProducto);
           console.log("La cantidad del producto es",cantidadProducto);
         };
-
 
     return (
       
@@ -79,7 +78,6 @@ const RegistroP = () => {
               </button>
               </Link>
               </div>
-              
        </div>
        
           </div>

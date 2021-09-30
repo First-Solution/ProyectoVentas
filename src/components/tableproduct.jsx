@@ -1,6 +1,31 @@
 import { Link } from 'react-router-dom';
-import producto from 'media/producto.svg';
+import produc from 'media/producto.svg';
+import React , {useEffect,useState} from 'react';
 const Tabla = () =>{
+  const ProductBackend = [
+    {
+      idProducto: '01',
+      nombre: 'pantalon',
+      cantidad: 10,
+      valor: 120000
+    },
+    {
+      idProducto: '02',
+      nombre: 'jeans',
+      cantidad: 0,
+      valor: 180000
+    },
+    {
+      idProducto: '19',
+      nombre: 'licra',
+      cantidad: 100,
+      valor: 220000
+    }
+  ];
+  const [producto, setProducto] = useState([]);
+  useEffect(() => {
+    setProducto(ProductBackend);
+  }, []);
     return(
        <>
       <h1 className = "text-gray-600  mx-auto text-center text-3xl py-3 font-semibold text-opacity-75">Productos</h1>
@@ -32,44 +57,53 @@ const Tabla = () =>{
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
-                  <tr>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="flex items-center">
-                        <div className="flex-shrink-0 h-10 w-10">
-                          <img className="h-10 w-10 rounded-full" src={producto}alt=""/>
-                        </div>
-                        <div className="ml-4">
-                          <div className="text-sm font-medium text-gray-900">
-                            Pantalones
-                          </div>
-                          <div className="text-sm text-gray-500">
-                            
-                          </div>
-                        </div>
-                      </div>
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="text-sm text-gray-500">021</div>
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-purple-100 text-purple-800">
-                        Disponible
-                      </span>
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="text-sm text-gray-500">12</div>
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                      50.000
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                    <Link to='/Admin/EditarProducto'>
-                      <p className="text-indigo-600 hover:text-indigo-900">Edit</p>
-                    </Link>
-                    </td>
-                  </tr>
+                  {producto.map((pro) =>{
+                      return(
+                         <tr>
+                          <td className="px-6 py-4 whitespace-nowrap">
+                            <div className="flex items-center">
+                              <div className="flex-shrink-0 h-10 w-10">
+                                <img className="h-10 w-10 rounded-full" src={produc}alt=""/>
+                              </div>
+                              <div className="ml-4">
+                                <div className="text-sm font-medium text-gray-900">
+                                  {pro.nombre}
+                                </div>
+                                <div className="text-sm text-gray-500">
+                                  
+                                </div>
+                              </div>
+                            </div>
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap">
+                            <div className="text-sm text-gray-500">{pro.idProducto}</div>
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap">
+                            { pro.cantidad > 0 ?
+                              <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-purple-100 text-purple-800">
+                                Disponible
+                              </span>
+                              :
+                              <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
+                                Agotado
+                              </span>
+                            }
 
-
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap">
+                              <div className="text-sm text-gray-500">{pro.cantidad}</div>
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                            {pro.valor}
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                          <Link to='/Admin/EditarProducto'>
+                            <p className="text-indigo-600 hover:text-indigo-900">Edit</p>
+                          </Link>
+                          </td>
+                        </tr>
+                      );
+                  })}
                 </tbody>
               </table>
             </div>

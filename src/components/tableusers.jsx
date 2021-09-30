@@ -1,5 +1,27 @@
 import { Link } from 'react-router-dom';
+import React , {useEffect,useState} from 'react';
+import Perfil from 'media/perfil.png';
 const Tabla = () =>{
+  const UsuarioBackend = [
+    {
+      idUsuario: '01',
+      nombreCl: 'Camilo',
+      Status: 'Active',
+      correo: 'camilo@gmai.com',
+      rol: 1
+    },
+    {
+      idUsuario: '02',
+      nombreCl: 'sergio',
+      Status: 'InActive',
+      correo: 'sergio@gmai.com',
+      rol: 2
+    }
+  ];
+  const [usuarios, setUsuarios] = useState([]);
+  useEffect(() => {
+    setUsuarios(UsuarioBackend);
+  }, []);
     return(
        <>
       <h1 className = "text-gray-600  mx-auto text-center text-3xl py-3 font-semibold text-opacity-75">Usuarios</h1>
@@ -28,41 +50,50 @@ const Tabla = () =>{
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
-                  <tr>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="flex items-center">
-                        <div className="flex-shrink-0 h-10 w-10">
-                          <img className="h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60" alt=""/>
-                        </div>
-                        <div className="ml-4">
-                          <div className="text-sm font-medium text-gray-900">
-                            Jane Cooper
+                {usuarios.map((us) => {
+                    return(
+                      <tr>
+                      <td className="px-6 py-4 whitespace-nowrap">
+                        <div className="flex items-center">
+                          <div className="flex-shrink-0 h-10 w-10">
+                            <img className="h-10 w-10 rounded-full" src={Perfil} alt=""/>
                           </div>
-                          <div className="text-sm text-gray-500">
-                            jane.cooper@example.com
+                          <div className="ml-4">
+                            <div className="text-sm font-medium text-gray-900">
+                              {us.nombreCl}
+                            </div>
+                            <div className="text-sm text-gray-500">
+                              {us.correo}
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="text-sm text-gray-500">100067234</div>
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                        Active
-                      </span>
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                      Admin
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                    <Link to='/Admin/EditarUsuarios'>
-                      <p className="text-indigo-600 hover:text-indigo-900">Edit</p>
-                    </Link>
-                    </td>
-                  </tr>
-
-
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap">
+                        <div className="text-sm text-gray-500">{us.idUsuario}</div>
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap">
+                        { us.Status == "Active" ? 
+                          <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                            Active
+                          </span>:
+                          <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
+                          InActive
+                        </span>
+                        }
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                        { us.rol == 1 ? <p>Admin</p>: <p>Vendedor</p>
+                        }
+                        
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                      <Link to='/Admin/EditarUsuarios'>
+                        <p className="text-indigo-600 hover:text-indigo-900">Edit</p>
+                      </Link>
+                      </td>
+                    </tr>
+                    );
+                })}
                 </tbody>
               </table>
             </div>
@@ -82,5 +113,4 @@ const Tabla = () =>{
        </>
     );
 }
-
 export default Tabla;
