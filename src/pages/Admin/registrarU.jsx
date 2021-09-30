@@ -33,7 +33,7 @@ function RegistroU() {
               <input onChange = { (e) => {
                 setNombre(e.target.value);
               }
-              }className="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3" id="company" type="text" placeholder="Example name"/>
+              }vale = {Nombre}className="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3" id="company" type="text" placeholder="Example name"/>
 
             </div>
             <div className="md:w-1/2 px-3">
@@ -43,7 +43,7 @@ function RegistroU() {
               <input onChange = { (e) => {
                 setId(e.target.value);
               }
-              }className="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3" id="title" type="text" placeholder="1000000"/>
+              }vale = {id}className="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3" id="title" type="text" placeholder="1000000"/>
             </div>
             <div className="md:w-1/2 px-3">
               <label className="uppercase tracking-wide text-black text-xs font-bold mb-2" for="title">
@@ -52,7 +52,7 @@ function RegistroU() {
               <input onChange = { (e) => {
                 setFecha(e.target.value);
               }
-              }className="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3" id="title" type="date" placeholder="1000000"/>
+              }vale = {fecha}className="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3" id="title" type="date" placeholder="1000000"/>
             </div>
           </div>
 
@@ -64,7 +64,7 @@ function RegistroU() {
               <input onChange = { (e) => {
                 setDireccion(e.target.value);
               }
-              }className="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3" id="company" type="text" placeholder="Carrera 1 # 1·1"/>
+              }vale = {direccion}className="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3" id="company" type="text" placeholder="Carrera 1 # 1·1"/>
             </div>
             <div className="md:w-1/2 px-3">
               <label className="uppercase tracking-wide text-black text-xs font-bold mb-2" for="title">
@@ -73,7 +73,7 @@ function RegistroU() {
               <input onChange = { (e) => {
                 setTelefono(e.target.value);
               }
-              }className="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3" id="title" type="text" placeholder="10"/>
+              }vale = {telefono}className="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3" id="title" type="text" placeholder="10"/>
             </div>
           </div>
           <div className="-mx-3 md:flex mb-6">
@@ -84,7 +84,7 @@ function RegistroU() {
               <input onChange = { (e) => {
                 setFoto(e.target.value);
               }
-              }className="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3" id="company" type="file" />
+              }vale = {foto}className="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3" id="company" type="file" />
             </div>
             
           </div>

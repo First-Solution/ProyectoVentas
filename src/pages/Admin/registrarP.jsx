@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import React , {useEffect,useState} from 'react';
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const RegistroP = () => {
   const [nombreProducto,setNombreProducto]=useState("");
   const [idProducto,setidProducto]=useState("");
@@ -15,6 +16,16 @@ const RegistroP = () => {
           console.log("El id del producto es",idProducto);
           console.log("El valor del producto es",valorProducto);
           console.log("La cantidad del producto es",cantidadProducto);
+
+          toast.info('🦄 Registrado correctamente!', {
+            position: "bottom-center",
+            autoClose: 1000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            });
         };
 
     return (
@@ -41,7 +52,7 @@ const RegistroP = () => {
               </label>
               <input onChange ={(e) =>{
                 setidProducto(e.target.value);
-              }} className="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3" id="title" type="text" placeholder="P10"/>
+              }} vale = {idProducto}className="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3" id="title" type="text" placeholder="P10"/>
             </div>
           </div>
 
@@ -52,7 +63,7 @@ const RegistroP = () => {
               </label>
               <input onChange ={(e) =>{
                 setvalorProducto(e.target.value);
-              }}className="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3" id="company" type="number" placeholder="Valor U/N"/>
+              }}vale = {valorProducto}className="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3" id="company" type="number" placeholder="Valor U/N"/>
 
             </div>
             <div className="md:w-1/2 px-3">
@@ -61,7 +72,7 @@ const RegistroP = () => {
               </label>
               <input onChange ={(e) =>{
                 setcantidadProducto(e.target.value);
-              }}className="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3" id="title" type="number" placeholder="10"/>
+              }}vale = {cantidadProducto}className="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3" id="title" type="number" placeholder="10"/>
             </div>
           </div>
           <div className="-mx-3 md:flex mt-2">
@@ -79,11 +90,21 @@ const RegistroP = () => {
               </Link>
               </div>
        </div>
-       
           </div>
+          <ToastContainer
+              position="bottom-center"
+              autoClose={1000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+          />
         </div>
       </form>
-   
+              
     </div>
     );
   }

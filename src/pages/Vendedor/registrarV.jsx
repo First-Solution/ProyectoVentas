@@ -37,7 +37,7 @@ const RegistroV = () => {
               <input onChange = { (e) => {
                 setidEncargado(e.target.value);
               }
-              }className="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3" id="company" type="text" placeholder="Id"/>
+              }value = {idEncargado}className="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3" id="company" type="text" placeholder="Id"/>
 
             </div>
             <div className="md:w-1/2 px-3">
@@ -47,7 +47,7 @@ const RegistroV = () => {
               <input onChange = { (e) => {
                 setidVenta(e.target.value);
               }
-              }className="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3" id="title" type="text" placeholder="Id"/>
+              }value = {idVenta}className="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3" id="title" type="text" placeholder="Id"/>
             </div>
           </div>
 
@@ -59,7 +59,7 @@ const RegistroV = () => {
               <input onChange = { (e) => {
                 setidComprador(e.target.value);
               }
-              }className="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3" id="company" type="text" placeholder="Id"/>
+              }value = {idComprador}lassName="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3" id="company" type="text" placeholder="Id"/>
 
             </div>
             <div className="md:w-1/2 px-3">
@@ -69,7 +69,7 @@ const RegistroV = () => {
               <input onChange = { (e) => {
                 setnombreComprador(e.target.value);
               }
-              }className="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3" id="title" type="text" placeholder="Nombre"/>
+              }value = {nombreComprador}className="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3" id="title" type="text" placeholder="Nombre"/>
             </div>
           </div>
 
@@ -81,7 +81,7 @@ const RegistroV = () => {
               <input onChange = { (e) => {
                 setproducto(e.target.value);
               }
-              }className="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3" id="company" type="text" placeholder="Product"/>
+              }value = {producto}className="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3" id="company" type="text" placeholder="Product"/>
             </div>
             <div className="md:w-1/2 px-3 mb-6 md:mb-0">
               <label class="uppercase tracking-wide text-black text-xs font-bold mb-2" for="company">
@@ -90,7 +90,7 @@ const RegistroV = () => {
               <input onChange = { (e) => {
                 setcantidad(e.target.value);
               }
-              }className="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3" id="company" type="number" placeholder="Cantidad"/>
+              }value = {cantidad}className="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3" id="company" type="number" placeholder="Cantidad"/>
             </div>
           </div>
 
@@ -102,7 +102,7 @@ const RegistroV = () => {
               <input onChange = { (e) => {
                 setfechainicio(e.target.value);
               }
-              }className="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3" id="title" type="date" placeholder="10"/>
+              }value = {fechainicio}className="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3" id="title" type="date" placeholder="10"/>
             </div>
             <div className="md:w-1/2 px-3">
               <label className="uppercase tracking-wide text-black text-xs font-bold mb-2" for="title">
@@ -111,7 +111,7 @@ const RegistroV = () => {
               <input  onChange = { (e) => {
                 setfechafinal(e.target.value);
               }
-              }className="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3" id="title" type="date" placeholder="10"/>
+              }value = {fechafinal}className="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3" id="title" type="date" placeholder="10"/>
             </div>
           </div>
           <div className="-mx-3 md:flex mt-2">

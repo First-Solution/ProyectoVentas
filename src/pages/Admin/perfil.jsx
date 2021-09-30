@@ -1,5 +1,6 @@
 import Perfile from 'media/perfil.png';
 import react,{useState,useEffect} from "react";
+
 const Perfil = () => {
     const UsuarioBackend = [
         {   Nombre:'Camilo',
@@ -8,7 +9,7 @@ const Perfil = () => {
         }
     ];
 
-    const [mostrarCampos,setMostrarCampos] = useState(false);
+  const [mostrarCampos,setMostrarCampos] = useState(false);
     return (
     <div class="h-screen bg-indigo-50 py-20 px-3">
         <div className="max-w-md mx-auto md:max-w-lg">
