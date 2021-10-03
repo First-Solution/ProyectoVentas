@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import react,{useState,useEffect} from "react";
+import { ToastContainer, toast } from 'react-toastify';
 function RegistroU() {
   const [Nombre,setNombre] = useState("");
   const [id,setId] = useState("");

@@ -59,7 +59,7 @@ const RegistroV = () => {
               <input onChange = { (e) => {
                 setidComprador(e.target.value);
               }
-              }value = {idComprador}lassName="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3" id="company" type="text" placeholder="Id"/>
+              }value = {idComprador}className="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3" id="company" type="text" placeholder="Id"/>
 
             </div>
             <div className="md:w-1/2 px-3">

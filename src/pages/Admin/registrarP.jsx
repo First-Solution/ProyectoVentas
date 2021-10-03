@@ -14,7 +14,7 @@ const RegistroP = () => {
           console.log("El valor del producto es",valorProducto);
           console.log("La cantidad del producto es",cantidadProducto);
 
-          toast.success('🦄 Producto Registrado correctamente!', {
+          toast.success('🤡 Producto Registrado correctamente!', {
             position: "bottom-center",
             autoClose: 1000,
             hideProgressBar: false,
