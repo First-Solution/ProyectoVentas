@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import react ,{useEffect,useState} from 'react';
+import { ToastContainer, toast } from 'react-toastify';
 const RegistroV = () => {
   const [idEncargado,setidEncargado] = useState ("");
   const [idVenta,setidVenta] = useState ("");
@@ -9,8 +10,9 @@ const RegistroV = () => {
   const [cantidad,setcantidad] = useState (0);
   const [fechainicio,setfechainicio] = useState ("");
   const [fechafinal,setfechafinal] = useState ("");
+  const [estado,setestado] = useState ("");
   useEffect(()=>{
-  },[idEncargado,idVenta,idComprador,nombreComprador,producto,cantidad,fechainicio,fechafinal]);
+  },[idEncargado,idVenta,idComprador,nombreComprador,producto,cantidad,fechainicio,fechafinal,estado]);
 
   const EnviarAlback = () =>{
     console.log("Id encargado ",idEncargado);
@@ -21,6 +23,16 @@ const RegistroV = () => {
     console.log("cantidad ",cantidad);
     console.log("fecha inicio ",fechainicio);
     console.log("fecha final",fechafinal);
+    console.log("estado",estado);
+
+    toast.success('🤡 Venta Registrado correctamente!', {
+      position: "top-center",
+      autoClose: 1000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      });
   };
 
     return (
@@ -59,7 +71,7 @@ const RegistroV = () => {
               <input onChange = { (e) => {
                 setidComprador(e.target.value);
               }
-              }value = {idComprador}lassName="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3" id="company" type="text" placeholder="Id"/>
+              }value = {idComprador}className="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3" id="company" type="text" placeholder="Id"/>
 
             </div>
             <div className="md:w-1/2 px-3">
@@ -76,7 +88,7 @@ const RegistroV = () => {
           <div className="-mx-3 md:flex mb-6">
             <div className="md:w-1/2 px-3 mb-6 md:mb-0">
               <label class="uppercase tracking-wide text-black text-xs font-bold mb-2" for="company">
-                Producto
+                Id Producto
               </label>
               <input onChange = { (e) => {
                 setproducto(e.target.value);
@@ -114,6 +126,25 @@ const RegistroV = () => {
               }value = {fechafinal}className="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3" id="title" type="date" placeholder="10"/>
             </div>
           </div>
+          <div className="-mx-3 md:flex mb-6">
+            <div className="md:w-1/2 px-3">
+              <label className="uppercase tracking-wide text-black text-xs font-bold mb-2" for="title">
+                Estado
+              </label>
+              <select className="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3"  name="Estado" onChange = { (e) => {
+                setestado(e.target.value);
+              }
+              }value = {estado}>
+                            <option>Selecciona una opción</option>
+                            <option>Embalaje</option>
+                            <option>Pendiente</option>
+                            <option>Enviado</option>
+                            <option>Recibido</option>
+                            <option>Cancelado</option>
+                            
+              </select>
+            </div>
+          </div>
           <div className="-mx-3 md:flex mt-2">
           <div className="min-w-full md:flex md:flex-1 lg:w-0 py-2">
               
@@ -128,6 +159,17 @@ const RegistroV = () => {
               </Link>
        </div>
           </div>
+          <ToastContainer
+              position="bottom-center"
+              autoClose={1000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+          />
         </div>
       </form>
     </div>

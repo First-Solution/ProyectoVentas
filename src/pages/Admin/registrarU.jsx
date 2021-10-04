@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import react,{useState,useEffect} from "react";
+import { ToastContainer, toast } from 'react-toastify';
 function RegistroU() {
   const [Nombre,setNombre] = useState("");
   const [id,setId] = useState("");
@@ -7,9 +8,10 @@ function RegistroU() {
   const [direccion,setDireccion] = useState("");
   const [telefono,setTelefono] = useState("");
   const [foto,setFoto] = useState("");
+  const [estado,setestado] = useState("");
 
   useEffect(()=>{
-  },[Nombre,id,fecha,direccion,telefono,foto]);
+  },[Nombre,id,fecha,direccion,telefono,foto,estado]);
 
   const EnviarAlback = () =>{
     console.log("nombre ",Nombre);
@@ -18,6 +20,15 @@ function RegistroU() {
     console.log("direccion ",direccion);
     console.log("telefono ",telefono);
     console.log("foto",foto);
+    console.log("estado",estado);
+    toast.success('🤡 Usuario Registrado correctamente!', {
+      position: "top-center",
+      autoClose: 1000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      });
   };
 
     return (
@@ -86,7 +97,20 @@ function RegistroU() {
               }
               }vale = {foto}className="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3" id="company" type="file" />
             </div>
-            
+            <div className="md:w-1/2 px-3">
+              <label className="uppercase tracking-wide text-black text-xs font-bold mb-2" for="title">
+                Estado
+              </label>
+              <select className= 'w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3' name="Estado" onChange = { (e) => {
+                setestado(e.target.value);
+              }
+              }value = {estado}>
+                            <option>Selecciona una opción</option>
+                            <option className = " text-green bg-green-300">Activo</option>
+                            <option className = "text-red bg-red-300">Inactivo</option>
+                            
+              </select>
+            </div>
           </div>
         <div className="-mx-3 md:flex mt-2">
           <div className="min-w-full md:flex md:flex-1 lg:w-0 py-2">
@@ -103,6 +127,17 @@ function RegistroU() {
               </div>
        </div>
           </div>
+          <ToastContainer
+              position="bottom-center"
+              autoClose={1000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+          />
         </div>
       </form>
     </div>

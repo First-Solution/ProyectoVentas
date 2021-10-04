@@ -14,21 +14,18 @@ const RegistroP = () => {
           console.log("El valor del producto es",valorProducto);
           console.log("La cantidad del producto es",cantidadProducto);
 
-          toast.success('🦄 Producto Registrado correctamente!', {
-            position: "bottom-center",
+          toast.success('🤡 Producto Registrado correctamente!', {
+            position: "top-center",
             autoClose: 1000,
             hideProgressBar: false,
             closeOnClick: true,
             pauseOnHover: true,
             draggable: true,
-            progress: undefined,
             });
         };
-
     return (
       
       <div className=" mx-auto max-w-6xl py-20 px-12 lg:px-24 shadow-xl mb-24">
-        
         <h1 className = "text-gray-600  mx-auto text-center text-3xl py-3 font-semibold text-opacity-75">Registro Productos</h1>
       <form>
         <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col">

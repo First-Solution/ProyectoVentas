@@ -110,7 +110,7 @@ const Tabla = () =>{
                   {vent.responsable}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                  <Link to='/Admin/EditarVentas'>
+                  <Link to='/Admin/EditarVenta'>
                     <p className="text-indigo-600 hover:text-indigo-900">Edit</p>
                   </Link>
                   </td>
