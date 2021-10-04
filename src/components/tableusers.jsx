@@ -82,7 +82,7 @@ const Tabla = () =>{
                         }
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        { us.rol == 1 ? <p>Admin</p>: <p>Vendedor</p>
+                        { us.rol === 1 ? <p>Admin</p>: <p>Vendedor</p>
                         }
                         
                       </td>

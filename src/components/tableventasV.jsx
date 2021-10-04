@@ -93,7 +93,7 @@ const Tabla = () =>{
                   {vent.valor}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
-                    { vent.Status == "Embalaje" ? <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
+                    { vent.Status === "Embalaje" ? <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
                       {vent.Status}
                       </span> : <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
                       {vent.Status}
