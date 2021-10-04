@@ -1,14 +1,20 @@
 import Perfile from 'media/perfil.png';
 import react,{useState,useEffect} from "react";
+
 const Perfil = () => {
+    const UsuarioBackend = [
+        {   Nombre:'Camilo',
+            correo: 'Camilo@gmail.com',
+            telefono: '319132133'
+        }
+    ];
 
-
-    const [mostrarCampos,setMostrarCampos] = useState(false);
+  const [mostrarCampos,setMostrarCampos] = useState(false);
     return (
-    <div class="h-screen bg-indigo-50 py-20 px-3">
+    <div class="h-full py-5 px-3">
         <div className="max-w-md mx-auto md:max-w-lg">
             <div className="w-full">
-                <div className="bg-white p-3 rounded text-center py-5">
+                <div className="bg-white p-3 rounded text-center ">
                     <div className="flex justify-center"> <img class="rounded-full" src={Perfile} width="100"/> </div>
 
                     <div className="text-center">

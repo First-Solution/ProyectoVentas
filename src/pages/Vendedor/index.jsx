@@ -2,8 +2,7 @@ import ropa1 from "media/ropa1.jpg";
 import ropa2 from "media/ropa2.jpg";
 import ropa3 from "media/ropa3.jpg";
 function Index() {
-    return (
-     
+    return ( 
       <div id="carouselExampleCaptions" className="carousel slide p-3" data-bs-ride="carousel">
       <div className="carousel-indicators ">
         <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
