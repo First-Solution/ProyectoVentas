@@ -9,6 +9,7 @@ const Tabla = () =>{
       nombreCl: 'Camilo',
       Status: 'Embalaje',
       correo: 'camilo@gmai.com',
+      producto: "Jeans",
       valor: 200000,
       fechaI: '22-01-2020',
       fechaF: '18-11-2021',
@@ -19,6 +20,7 @@ const Tabla = () =>{
       nombreCl: 'sergio',
       Status: 'Pendiente',
       correo: 'sergio@gmai.com',
+      producto: "Camisa",
       valor: 120000,
       fechaI: '28-10-2020',
       fechaF: '28-10-2021',
@@ -46,6 +48,9 @@ const Tabla = () =>{
               </th>
               <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 Cliente
+              </th>
+              <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Producto
               </th>
               <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 Valor
@@ -88,6 +93,9 @@ const Tabla = () =>{
                         </div>
                       </div>
                     </div>
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  {vent.producto}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                   {vent.valor}
