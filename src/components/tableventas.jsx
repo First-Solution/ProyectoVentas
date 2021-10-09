@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 import im from 'media/apreton.svg';
 import React , {useEffect,useState} from 'react';
+
+
 const Tabla = () =>{
   
   const VentasBackend = [
@@ -23,9 +25,22 @@ const Tabla = () =>{
       fechaI: '28-10-2020',
       fechaF: '28-10-2021',
       responsable: 'Andrea'
+    },
+    {
+      idVenta: '03',
+      nombreCl: 'alex',
+      Status: 'Entregado',
+      correo: 'alex@gmai.com',
+      valor: 120000,
+      fechaI: '28-10-2020',
+      fechaF: '28-10-2021',
+      responsable: 'Andrea'
     }
   ];
+
+
   const [ventas, setVentas] = useState([]);
+
   useEffect(() => {
     setVentas(VentasBackend);
   }, []);
@@ -73,7 +88,7 @@ const Tabla = () =>{
                 <tr>
                 <td className="px-6 py-4 whitespace-nowrap">
                     <p className="text-sm text-gray-500">{vent.idVenta}</p>
-                  </td>
+                </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="flex items-center">
                       <div className="flex-shrink-0 h-10 w-10">
