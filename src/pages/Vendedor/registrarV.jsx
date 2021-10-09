@@ -2,6 +2,8 @@ import React, {useEffect, useState, useRef} from "react";
 import im from 'media/apreton.svg';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import axios from 'axios';
+
 
 const ventasBackend = [
   {
@@ -230,23 +232,49 @@ const FormularioCrecionVentas = ({setMostrarTabla, listaVentas, setVentas  }) =>
     }])
   }*/
 
-  const submitForm = (e) => {
+  
+
+  const submitForm = async (e) => {
     
     e.preventDefault();
     const fd = new FormData(form.current);
 
+    const nuevoVehiculo = {};
+    fd.forEach((value, key) => {
+      nuevoVehiculo[key] = value;
+    });
+
+    const options = {
+      method: 'POST',
+      url: 'https://vast-waters-45728.herokuapp.com/venta/create',
+      headers: { 'Content-Type': 'application/json' },
+      data: { name: nuevoVehiculo.name, brand: nuevoVehiculo.brand, model: nuevoVehiculo.model },
+    };
+
+    await axios
+      .request(options)
+      .then(function (response) {
+        console.log(response.data);
+        toast.success('Venta creada con exito');
+      })
+      .catch(function (error) {
+        console.error(error);
+        toast.error('Error al registrar la venta');
+      });
+
+    setMostrarTabla(true);
+  };
+
+    /*
     const nuevaVenta = {}
     fd.forEach((value, key) => {
       nuevaVenta[key] = value
-    });
-
+    });*/
+    /*
     setMostrarTabla(true)
-    /*console.log('datos form enviados' , nuevaVenta)*/
+    console.log('datos form enviados' , nuevaVenta)
     toast.success("Venta guardada correctamente")
-    setVentas([...listaVentas, nuevaVenta])
-    
-  }
-
+    setVentas([...listaVentas, nuevaVenta])*/
 
   return(
     <div className='flex flex-col items-center justify-center'>
