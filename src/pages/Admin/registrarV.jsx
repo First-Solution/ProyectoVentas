@@ -1,179 +1,322 @@
+import React, {useEffect, useState, useRef} from "react";
 import { Link } from "react-router-dom";
-import react ,{useEffect,useState} from 'react';
 import { ToastContainer, toast } from 'react-toastify';
-const RegistroV = () => {
-  const [idEncargado,setidEncargado] = useState ("");
-  const [idVenta,setidVenta] = useState ("");
-  const [idComprador,setidComprador] = useState ("");
-  const [nombreComprador,setnombreComprador] = useState("");
-  const [producto,setproducto] = useState ("");
-  const [cantidad,setcantidad] = useState (0);
-  const [fechainicio,setfechainicio] = useState ("");
-  const [fechafinal,setfechafinal] = useState ("");
-  const [estado,setestado] = useState ("");
-  useEffect(()=>{
-  },[idEncargado,idVenta,idComprador,nombreComprador,producto,cantidad,fechainicio,fechafinal,estado]);
+import 'react-toastify/dist/ReactToastify.css';
+import im from 'media/apreton.svg';
 
-  const EnviarAlback = () =>{
-    console.log("Id encargado ",idEncargado);
-    console.log("Id Venta ",idVenta);
-    console.log("Id Comprador ",idComprador);
-    console.log("Nombre comprador ",nombreComprador);
-    console.log("Producto ",producto);
-    console.log("cantidad ",cantidad);
-    console.log("fecha inicio ",fechainicio);
-    console.log("fecha final",fechafinal);
-    console.log("estado",estado);
+const ventasBackend = [
+    {
+      idVenta: '01',
+      nombreCl: 'Camilo',
+      Estado: 'Embalaje',
+      correo: 'camilo@gmai.com',
+      valor: 200000,
+      fechaI: '22-01-2020',
+      fechaF: '18-11-2021',
+      responsable: 'Andrea',
+      producto: 'chaqueta'
+    },
+    {
+      idVenta: '02',
+      nombreCl: 'sergio',
+      Estado: 'Pendiente',
+      correo: 'sergio@gmai.com',
+      valor: 120000,
+      fechaI: '28-10-2020',
+      fechaF: '28-10-2021',
+      responsable: 'Andrea',
+      producto: 'chaqueta'
+    },
+    {
+      idVenta: '03',
+      nombreCl: 'alex',
+      Estado: 'Entregado',
+      correo: 'alex@gmai.com',
+      valor: 120000,
+      fechaI: '28-10-2020',
+      fechaF: '28-10-2021',
+      responsable: 'Andrea',
+      producto: 'camisa'
+    }
+  ];
 
-    toast.success('🤡 Venta Registrado correctamente!', {
-      position: "top-center",
-      autoClose: 1000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      });
-  };
-
-    return (
-      <div className=" mx-auto max-w-6xl bg-white py-20 px-12 lg:px-24 shadow-xl mb-24">
-        <h1 className = "text-gray-600  mx-auto text-center text-3xl py-3 font-semibold text-opacity-75">Registro Ventas</h1>
-      <form>
-        <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col">
-       
-          <div className="-mx-3 md:flex mb-6">
-            <div className="md:w-1/2 px-3 mb-6 md:mb-0">
-              <label class="uppercase tracking-wide text-black text-xs font-bold mb-2" for="company">
-                 ID Encargado
-              </label>
-              <input onChange = { (e) => {
-                setidEncargado(e.target.value);
-              }
-              }value = {idEncargado}className="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3" id="company" type="text" placeholder="Id"/>
-
-            </div>
-            <div className="md:w-1/2 px-3">
-              <label className="uppercase tracking-wide text-black text-xs font-bold mb-2" for="title">
-                ID Venta
-              </label>
-              <input onChange = { (e) => {
-                setidVenta(e.target.value);
-              }
-              }value = {idVenta}className="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3" id="title" type="text" placeholder="Id"/>
-            </div>
-          </div>
-
-          <div className="-mx-3 md:flex mb-6">
-            <div className="md:w-1/2 px-3 mb-6 md:mb-0">
-              <label class="uppercase tracking-wide text-black text-xs font-bold mb-2" for="company">
-                 ID COMPRADOR
-              </label>
-              <input onChange = { (e) => {
-                setidComprador(e.target.value);
-              }
-              }value = {idComprador}className="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3" id="company" type="text" placeholder="Id"/>
-
-            </div>
-            <div className="md:w-1/2 px-3">
-              <label className="uppercase tracking-wide text-black text-xs font-bold mb-2" for="title">
-                Nombre Comprador
-              </label>
-              <input onChange = { (e) => {
-                setnombreComprador(e.target.value);
-              }
-              }value = {nombreComprador}className="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3" id="title" type="text" placeholder="Nombre"/>
-            </div>
-          </div>
-
-          <div className="-mx-3 md:flex mb-6">
-            <div className="md:w-1/2 px-3 mb-6 md:mb-0">
-              <label class="uppercase tracking-wide text-black text-xs font-bold mb-2" for="company">
-                Id Producto
-              </label>
-              <input onChange = { (e) => {
-                setproducto(e.target.value);
-              }
-              }value = {producto}className="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3" id="company" type="text" placeholder="Product"/>
-            </div>
-            <div className="md:w-1/2 px-3 mb-6 md:mb-0">
-              <label class="uppercase tracking-wide text-black text-xs font-bold mb-2" for="company">
-                Cantidad
-              </label>
-              <input onChange = { (e) => {
-                setcantidad(e.target.value);
-              }
-              }value = {cantidad}className="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3" id="company" type="number" placeholder="Cantidad"/>
-            </div>
-          </div>
-
-          <div className="-mx-3 md:flex mb-6">
-            <div className="md:w-1/2 px-3">
-              <label className="uppercase tracking-wide text-black text-xs font-bold mb-2" for="title">
-                Fecha Inicio
-              </label>
-              <input onChange = { (e) => {
-                setfechainicio(e.target.value);
-              }
-              }value = {fechainicio}className="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3" id="title" type="date" placeholder="10"/>
-            </div>
-            <div className="md:w-1/2 px-3">
-              <label className="uppercase tracking-wide text-black text-xs font-bold mb-2" for="title">
-                Fecha Final
-              </label>
-              <input  onChange = { (e) => {
-                setfechafinal(e.target.value);
-              }
-              }value = {fechafinal}className="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3" id="title" type="date" placeholder="10"/>
-            </div>
-          </div>
-          <div className="-mx-3 md:flex mb-6">
-            <div className="md:w-1/2 px-3">
-              <label className="uppercase tracking-wide text-black text-xs font-bold mb-2" for="title">
-                Estado
-              </label>
-              <select className="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3"  name="Estado" onChange = { (e) => {
-                setestado(e.target.value);
-              }
-              }value = {estado}>
-                            <option>Selecciona una opción</option>
-                            <option>Embalaje</option>
-                            <option>Pendiente</option>
-                            <option>Enviado</option>
-                            <option>Recibido</option>
-                            <option>Cancelado</option>
-                            
-              </select>
-            </div>
-          </div>
-          <div className="-mx-3 md:flex mt-2">
-          <div className="min-w-full md:flex md:flex-1 lg:w-0 py-2">
-              
-              <button  type = "button" onClick = {EnviarAlback} className="sm:auto mx-auto ml-8 whitespace-nowrap px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700">
-                Registrar
-              </button>
-             
-             <Link to='/Admin/Ventas'>
-              <button type="button" className="sm:auto mx-auto ml-8 whitespace-nowrap px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700">
-                Ventas
-              </button>
-              </Link>
-       </div>
-          </div>
-          <ToastContainer
-              position="bottom-center"
-              autoClose={1000}
-              hideProgressBar={false}
-              newestOnTop={false}
-              closeOnClick
-              rtl={false}
-              pauseOnFocusLoss
-              draggable
-              pauseOnHover
-          />
-        </div>
-      </form>
-    </div>
-    );
+  const RegistroV = () => {
+    const [mostrarTabla, setMostrarTabla] = useState(true)
+    const [ventas, setVentas] = useState([])
+    const [textoBoton, setTextoBoton] = useState("Registrar nueva venta")
+  
+    useEffect(() =>{
+      // obtener lista de ventas desde el back
+      setVentas(ventasBackend)
+  
+    },[])
+  
+  
+  
+    useEffect(()=>{
+      if(mostrarTabla){
+        setTextoBoton("Registrar nueva venta")
+      }else{
+        setTextoBoton("Lista de ventas")
+      }
+  
+    },[mostrarTabla])
+  
+    return(
+      <div>
+        <h2 className="text-3xl font-extrabold text-gray-700">Pagina de administración de ventas</h2>
+        {mostrarTabla ? (<TablaVentas listaVentas = {ventas} />) :( <FormularioCrecionVentas 
+        setMostrarTabla ={setMostrarTabla} 
+        listaVentas={ventas}
+        setVentas={setVentas}/>)}
+  
+        <ToastContainer
+          position="top-center"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
+  
+     
+  
+        <button  type = "button" onClick={()=>setMostrarTabla(!mostrarTabla)} className="sm:auto mx-auto ml-8 whitespace-nowrap px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-900 hover:bg-indigo-700">
+        {textoBoton}
+        </button>
+      </div>
+    )
   }
+
+
+
+const TablaVentas = ({ listaVentas }) => {
+    useEffect(()=>{
+      console.log("listado de ventas", listaVentas)
+    },[listaVentas])
+  
+    return(
+        <table className="min-w-full divide-y divide-gray-200">
+     
+          <thead className="bg-gray-50">
+           <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+             Id venta
+           </th>
+     
+           <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+             Cliente
+           </th>
+     
+           <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+             Valor
+           </th>
+     
+           <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+             Estado
+           </th>
+     
+           <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+             Fecha inicial
+           </th>
+     
+           <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+             Fecha final
+           </th>
+     
+           <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+             Responsable
+           </th>
+     
+           <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+             Producto
+           </th>
+     
+           <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+             Editar/Eliminar
+           </th>
+     
+          </thead>
+     
+          <tbody>
+            {listaVentas.map((venta)=>{
+              return(
+               <tr>
+               <td className="px-6 py-4 whitespace-nowrap">
+                <p className="text-sm text-gray-500">{venta.idVenta}</p>
+               </td>
+      
+               <td className="px-6 py-4 whitespace-nowrap">
+                 <div className="flex items-center">
+                  <div className="flex-shrink-0 h-10 w-10">
+                    <img className="h-10 w-10 rounded-full" src={im} alt=""/>
+                  </div>
+      
+                  <div className="ml-4">
+                    <div className="text-sm font-medium text-gray-900">
+                      {venta.nombreCl}
+                    </div>
+                    <div className="text-sm text-gray-500">
+                      {venta.correo}
+                    </div>
+                  </div>
+      
+                </div>
+                 
+      
+               </td>
+      
+               <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                 {venta.valor}
+      
+               </td>
+      
+      
+               <td className="px-6 py-4 whitespace-nowrap">
+                 {venta.Estado}
+      
+                
+                
+               </td>
+      
+               <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{venta.fechaI}</td>
+               <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{venta.fechaF}</td>
+               <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{venta.responsable}</td>
+               <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{venta.producto}</td>
+               <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">editar/eliminar</td>
+             </tr>
+              )
+     
+     
+            })}
+     
+          </tbody>
+     
+          
+        </table>
+       )
+     }
+    
+     const FormularioCrecionVentas = ({setMostrarTabla, listaVentas, setVentas  }) => {
+
+        const form = useRef(null);
+        
+
+        const submitForm = (e) => {
+          
+          e.preventDefault();
+          const fd = new FormData(form.current);
+      
+          const nuevaVenta = {}
+          fd.forEach((value, key) => {
+            nuevaVenta[key] = value
+          });
+      
+          setMostrarTabla(true)
+          /*console.log('datos form enviados' , nuevaVenta)*/
+          toast.success("Venta guardada correctamente")
+          setVentas([...listaVentas, nuevaVenta])
+          
+        }
+      
+      
+        return(
+          <div className='flex flex-col items-center justify-center'>
+            <h2 className='text-2xl font-extrabold text-gray-500 p-2' >Registar nueva venta</h2>
+      
+            <form ref={form} onSubmit={submitForm} className = 'grid grid-cols-3'>
+      
+              <label htmlFor="id venta" className='flex flex-col'>
+                ID Venta
+                <input 
+                name='idVenta'
+                className = 'bg-gray-50 border border-gray-600 p-2 rounded-lg m-2' 
+                type='text' 
+                />
+              </label>
+             
+             <label htmlFor="nombre cliente" className='flex flex-col'>
+               Nombre Cliente
+               <input className = 'bg-gray-50 border border-gray-600 p-2 rounded-lg m-2' 
+               type='text' 
+               name = 'nombre cliente'
+               />
+             </label>
+      
+             <label htmlFor="estado venta" className='flex flex-col'>
+               Estado venta
+                <select 
+                  className = 'bg-gray-50 border border-gray-600 p-2 rounded-lg m-2'
+                  name='Estado'
+                  defaultValue={0}
+                  >
+      
+                 <option disabled value={0}>Seleccione una opción</option>
+                 <option >Embalaje</option>
+                 <option >Entregado</option>
+               </select>
+             </label>
+      
+             <label htmlFor="correo" className='flex flex-col'>
+               Correo Cliente
+               <input className = 'bg-gray-50 border border-gray-600 p-2 rounded-lg m-2' 
+               type='text'
+               name='correo'
+               />
+             </label>
+      
+             <label htmlFor="valor" className='flex flex-col'>
+               Valor venta
+               <input className = 'bg-gray-50 border border-gray-600 p-2 rounded-lg m-2'
+                type='number' min = '0' 
+                name='valor'
+               />
+             </label>
+      
+             <label htmlFor="fecha inicial" className='flex flex-col'>
+               Fecha inicial
+               <input className = 'bg-gray-50 border border-gray-600 p-2 rounded-lg m-2' 
+               type='date' 
+               name='fechaI'
+               />
+             </label>
+      
+             <label htmlFor="fecha final" className='flex flex-col'>
+               Fecha final
+               <input className = 'bg-gray-50 border border-gray-600 p-2 rounded-lg m-2'
+               type='date' 
+               name='fechaF'
+               />
+             </label>
+      
+             <label htmlFor="" className='flex flex-col'>
+               Responsable
+               <input className = 'bg-gray-50 border border-gray-600 p-2 rounded-lg m-2' 
+               type='text'
+               name='responsable'
+               />
+             </label>
+      
+             <label htmlFor="" className='flex flex-col'>
+               Producto
+               <input className = 'bg-gray-50 border border-gray-600 p-2 rounded-lg m-2' 
+               type='text' 
+               name='producto'
+               />
+             </label>
+              
+              <button 
+                 type='submit' 
+                className= 'col-span-3 bg-indigo-400 p-2 rounded-full shadow-md hover:bg-indigo-600 text-white'
+              > Registrar venta
+              </button>
+            </form>
+            
+          </div>
+        )
+      }
+
 
   export default RegistroV;
