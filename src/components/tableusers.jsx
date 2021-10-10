@@ -7,14 +7,14 @@ const UsuarioBackend = [
     {
         idUsuario: '01',
         nombreCl: 'Camilo',
-        Estado: 'Active',
+        Estado: 'Activo',
         correo: 'camilo@gmai.com',
         rol: 1
     },
     {
         idUsuario: '02',
         nombreCl: 'sergio',
-        Estado: 'InActive',
+        Estado: 'Inactivo',
         correo: 'sergio@gmai.com',
         rol: 2
     },
@@ -111,8 +111,17 @@ const TablaUsuarios = ({ listaUsuarios }) => {
                <td className="px-6 py-4 whitespace-nowrap">
                 <p className="text-sm text-gray-500">{usuario.idUsuario}</p>
                </td>
-      
-               <td className="px-6 py-4 whitespace-nowrap">
+
+               <div className="ml-4">
+                    <div className="text-sm font-medium text-gray-900">
+                      {usuario.nombreCl}
+                    </div>
+                    <div className="text-sm text-gray-500">
+                      {usuario.correo}
+                    </div>
+                  </div>
+
+               {/* <td className="px-6 py-4 whitespace-nowrap">
                  <div className="flex items-center">
                   <div className="flex-shrink-0 h-10 w-10">
                   </div>
@@ -129,7 +138,7 @@ const TablaUsuarios = ({ listaUsuarios }) => {
                 </div>
                  
       
-               </td>
+               </td> */}
       
                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                  {usuario.rol}
@@ -200,7 +209,7 @@ const TablaUsuarios = ({ listaUsuarios }) => {
                Nombre Usuario
                <input className = 'bg-gray-50 border border-gray-600 p-2 rounded-lg m-2' 
                type='text' 
-               name = 'nombre usuario'
+               name = 'nombreCl'
                />
              </label>
       
