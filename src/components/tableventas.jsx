@@ -239,7 +239,7 @@ const TablaVentas = ({ listaVentas }) => {
                Nombre Cliente
                <input className = 'bg-gray-50 border border-gray-600 p-2 rounded-lg m-2' 
                type='text' 
-               name = 'nombre cliente'
+               name = 'nombreCl'
                />
              </label>
       
