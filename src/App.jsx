@@ -21,7 +21,6 @@ import Ventas from 'pages/Admin/ventas';
 import Admin from 'pages/Admin/index';
 import AdminP from 'pages/Admin/perfil';
 import Vventas from 'pages/Vendedor/ventas';
-import RegistroP from "pages/Admin/registrarP";
 import RegistroV from "pages/Admin/registrarV";
 import RegistroU from "pages/Admin/registrarU";
 import AEditV from "pages/Admin/editarventa";
@@ -37,7 +36,7 @@ function App() {
   return (
     <Router>
       <Switch>
-      <Route path = {['/Admin','/Admin/Productos','/Admin/Ventas','/Admin/Usuarios','/Admin/Perfil','/Admin/RegistroUsuario','/Admin/RegistroVentas','/Admin/RegistroProducto','/Admin/EditarVenta','/Admin/EditarProducto','/Admin/EditarUsuario']}>
+      <Route path = {['/Admin','/Admin/Productos','/Admin/Ventas','/Admin/Usuarios','/Admin/Perfil','/Admin/RegistroUsuario','/Admin/RegistroVentas','/Admin/EditarVenta','/Admin/EditarProducto','/Admin/EditarUsuario']}>
         <LayoutAU>
             <Switch>
               <Route path='/Admin/Ventas' >
@@ -57,9 +56,6 @@ function App() {
               </Route>
               <Route path='/Admin/RegistroVentas' >
                 <RegistroV />
-              </Route>
-              <Route path='/Admin/RegistroProducto' >
-                <RegistroP />
               </Route>
               <Route path='/Admin/EditarVenta' >
               <AEditV />
