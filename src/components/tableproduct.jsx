@@ -1,127 +1,252 @@
-import { Link } from 'react-router-dom';
-import produc from 'media/producto.svg';
-import React , {useEffect,useState} from 'react';
-const Tabla = () =>{
-  const ProductBackend = [
+import React, {useEffect, useState, useRef} from "react";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
+const ProductoBackend = [
     {
-      idProducto: '01',
-      nombre: 'pantalon',
-      cantidad: 10,
-      valor: 120000
+        idProducto: '01',
+        nombre: 'pantalon',
+        cantidad: 10,
+        valor: 120000,
+        Estado: "Disponible"
     },
     {
-      idProducto: '02',
-      nombre: 'jeans',
-      cantidad: 0,
-      valor: 180000
+        idProducto: '02',
+        nombre: 'jeans',
+        cantidad: 0,
+        valor: 180000,
+        Estado: "Agotado"
     },
     {
-      idProducto: '19',
-      nombre: 'licra',
-      cantidad: 100,
-      valor: 220000
-    }
+        idProducto: '19',
+        nombre: 'licra',
+        cantidad: 100,
+        valor: 220000,
+        Estado: "Disponible"
+      }
   ];
-  const [producto, setProducto] = useState([]);
-  useEffect(() => {
-    setProducto(ProductBackend);
-  }, []);
+
+  const RegistroP = () => {
+    const [mostrarTabla, setMostrarTabla] = useState(true)
+    const [productos, setProductos] = useState([])
+    const [textoBoton, setTextoBoton] = useState("Registrar nuevo producto")
+  
+    useEffect(() =>{
+      // obtener lista de productos desde el back
+      setProductos(ProductoBackend)
+  
+    },[])
+  
+  
+  
+    useEffect(()=>{
+      if(mostrarTabla){
+        setTextoBoton("Registrar nuevo producto")
+      }else{
+        setTextoBoton("Lista de productos")
+      }
+  
+    },[mostrarTabla])
+  
     return(
-       <>
-      <h1 className = "text-gray-600  mx-auto text-center text-3xl py-3 font-semibold text-opacity-75">Productos</h1>
-      <div className="flex flex-col py-2 ">
-        <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-          <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-            <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-              <table className="min-w-full divide-y divide-gray-200">
-                <thead className="bg-gray-50">
-                  <tr>
-                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Nombre
-                    </th>
-                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Id
-                    </th>
-                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Status
-                    </th>
-                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Cantidad
-                    </th>
-                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      valor Uni
-                    </th>
-                    <th scope="col" className="relative px-6 py-3">
-                      <span className="sr-only">Edit</span>
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="bg-white divide-y divide-gray-200">
-                  {producto.map((pro) =>{
-                      return(
-                         <tr>
-                          <td className="px-6 py-4 whitespace-nowrap">
-                            <div className="flex items-center">
-                              <div className="flex-shrink-0 h-10 w-10">
-                                <img className="h-10 w-10 rounded-full" src={produc}alt=""/>
-                              </div>
-                              <div className="ml-4">
-                                <div className="text-sm font-medium text-gray-900">
-                                  {pro.nombre}
-                                </div>
-                                <div className="text-sm text-gray-500">
-                                  
-                                </div>
-                              </div>
-                            </div>
-                          </td>
-                          <td className="px-6 py-4 whitespace-nowrap">
-                            <div className="text-sm text-gray-500">{pro.idProducto}</div>
-                          </td>
-                          <td className="px-6 py-4 whitespace-nowrap">
-                            { pro.cantidad > 0 ?
-                              <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-purple-100 text-purple-800">
-                                Disponible
-                              </span>
-                              :
-                              <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
-                                Agotado
-                              </span>
-                            }
-
-                          </td>
-                          <td className="px-6 py-4 whitespace-nowrap">
-                              <div className="text-sm text-gray-500">{pro.cantidad}</div>
-                          </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            {pro.valor}
-                          </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                          <Link to='/Admin/EditarProducto'>
-                            <p className="text-indigo-600 hover:text-indigo-900">Edit</p>
-                          </Link>
-                          </td>
-                        </tr>
-                      );
-                  })}
-                </tbody>
-              </table>
-            </div>
-            <div className="min-w-full md:flex md:flex-1 lg:w-0 py-2 ">
-            <div className = "py-7">
-              <Link to='/Admin/RegistroProducto'>
-              <button  className="sm:auto mx-auto ml-8 whitespace-nowrap px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700">
-                Agregar
-              </button>
-             </Link>
-             </div>
-        </div>
-          </div>
-        </div>
+      <div>
+        <h2 className="text-3xl font-extrabold text-gray-700">Pagina de administración de productos</h2>
+        {mostrarTabla ? (<TablaProductos listaProductos = {productos} />) :( <FormularioCrecionProductos 
+        setMostrarTabla ={setMostrarTabla} 
+        listaProductos={productos}
+        setProductos={setProductos}/>)}
+  
+        <ToastContainer
+          position="top-center"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
+  
+     
+  
+        <button  type = "button" onClick={()=>setMostrarTabla(!mostrarTabla)} className="sm:auto mx-auto ml-8 whitespace-nowrap px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-900 hover:bg-indigo-700">
+        {textoBoton}
+        </button>
       </div>
+    )
+  }
 
-       </>
-    );
-}
 
-export default Tabla;
+
+const TablaProductos = ({ listaProductos }) => {
+    useEffect(()=>{
+      console.log("listado de productos", listaProductos)
+    },[listaProductos])
+  
+    return(
+        <table className="min-w-full divide-y divide-gray-200">
+     
+          <thead className="bg-gray-50">
+           <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+             Id
+           </th>
+
+
+
+           <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+             Producto
+           </th>
+     
+           <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+             Cantidad
+           </th>
+     
+           <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+             Valor
+           </th>
+           
+           <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+             Estado
+           </th>
+     
+           <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+             Editar/Eliminar
+           </th>
+     
+          </thead>
+     
+          <tbody>
+            {listaProductos.map((producto)=>{
+              return(
+               <tr>
+               <td className="px-6 py-4 whitespace-nowrap">
+                <p className="text-sm text-gray-500">{producto.idProducto}</p>
+               </td>
+      
+                <td className="px-6 py-4 whitespace-nowrap">
+                  {producto.nombre}
+                </td>
+           
+               <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                 {producto.cantidad}
+      
+               </td>
+               
+               <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                 {producto.valor}
+      
+               </td>
+      
+      
+               <td className="px-6 py-4 whitespace-nowrap">
+                 {producto.Estado}
+               </td>
+          
+      
+             
+               <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">editar/eliminar</td>
+             </tr>
+              )
+     
+     
+            })}
+     
+          </tbody>
+     
+          
+        </table>
+       )
+     }
+    
+     const FormularioCrecionProductos = ({setMostrarTabla, listaProductos, setProductos  }) => {
+
+        const form = useRef(null);
+
+        const submitForm = (e) => {
+          
+          e.preventDefault();
+          const fd = new FormData(form.current);
+      
+          const nuevoProducto = {}
+          fd.forEach((value, key) => {
+            nuevoProducto[key] = value
+          });
+      
+          setMostrarTabla(true)
+          /*console.log('datos form enviados' , nuevoProducto)*/
+          toast.success("Producto guardado correctamente")
+          setProductos([...listaProductos, nuevoProducto])
+          
+        }
+      
+      
+        return(
+          <div className='flex flex-col items-center justify-center'>
+            <h2 className='text-2xl font-extrabold text-gray-500 p-2' >Registar nuevo producto</h2>
+      
+            <form ref={form} onSubmit={submitForm} className = 'grid grid-cols-3'>
+      
+              <label htmlFor="id producto" className='flex flex-col'>
+                ID 
+                <input 
+                name='idProducto'
+                className = 'bg-gray-50 border border-gray-600 p-2 rounded-lg m-2' 
+                type='text' 
+                />
+              </label>
+             
+             <label htmlFor="nombre producto" className='flex flex-col'>
+               Nombre Producto
+               <input className = 'bg-gray-50 border border-gray-600 p-2 rounded-lg m-2' 
+               type='text' 
+               name = 'nombre'
+               />
+             </label>
+      
+             <label htmlFor="estado producto" className='flex flex-col'>
+               Estado producto
+                <select 
+                  className = 'bg-gray-50 border border-gray-600 p-2 rounded-lg m-2'
+                  name='Estado'
+                  defaultValue={0}
+                  >
+      
+                 <option disabled value={0}>Seleccione una opción</option>
+                 <option >Disponible</option>
+                 <option >Agotado</option>
+               </select>
+             </label>
+      
+             <label htmlFor="valor" className='flex flex-col'>
+               Valor
+               <input className = 'bg-gray-50 border border-gray-600 p-2 rounded-lg m-2'
+                type='number' min = '0' 
+                name='valor'
+               />
+             </label>
+       
+             <label htmlFor="cantidad" className='flex flex-col'>
+               Cantidad
+               <input className = 'bg-gray-50 border border-gray-600 p-2 rounded-lg m-2'
+                type='number' min = '0' 
+                name='cantidad'
+               />
+             </label>
+      
+      
+              
+              <button 
+                 type='submit' 
+                className= 'col-span-3 bg-indigo-400 p-2 rounded-full shadow-md hover:bg-indigo-600 text-white'
+              > Registrar producto
+              </button>
+            </form>
+            
+          </div>
+        )
+      }
+
+
+  export default RegistroP;
