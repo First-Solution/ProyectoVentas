@@ -1,5 +1,5 @@
 import React, {useEffect, useState, useRef} from "react";
-/*import im from 'media/apreton.svg';*/
+import im from 'media/apreton.svg';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
@@ -254,15 +254,55 @@ const FilaVenta= ({ venta, setEjecutarConsulta }) => {
         </>
       ) : (
         <>
-          <td>{venta.idVenta}</td>
-          <td>{venta.nombreCl}</td>
-          <td>{venta.Estado}</td>
-          <td>{venta.correo}</td>
-          <td>{venta.valor}</td>
-          <td>{venta.fechaI}</td>
-          <td>{venta.fechaF}</td>
-          <td>{venta.responsable}</td>
-          <td>{venta.producto}</td>
+
+            <td className="px-6 py-4 whitespace-nowrap">
+                  <p className="text-sm text-gray-500">{venta.idVenta}</p>
+            </td>
+
+            <td className="px-6 py-4 whitespace-nowrap">
+              <div className="flex items-center">
+                <div className="flex-shrink-0 h-10 w-10">
+                  <img className="h-10 w-10 rounded-full" src={im} alt=""/>
+                </div>
+                <div className="ml-4">
+                  <div className="text-sm font-medium text-gray-900">
+                    {venta.nombreCl}
+                  </div>
+                    <div className="text-sm text-gray-500">
+                      {venta.correo}
+                    </div>
+                </div>
+              </div>
+            </td>
+
+            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+              {venta.valor}
+            </td>
+
+            <td className="px-6 py-4 whitespace-nowrap">
+                { venta.Estado === "Embalaje" ? <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
+                  {venta.Estado}
+                    </span> : <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
+                    {venta.Estado}
+                    </span>
+                    }
+            </td>
+
+            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+              {venta.fechaI}
+            </td>
+
+            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+              {venta.fechaF}
+            </td>
+
+            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+              {venta.responsable}
+            </td>
+
+            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+              {venta.producto}
+            </td>
         </>
       )}
       <td>
@@ -284,16 +324,16 @@ const FilaVenta= ({ venta, setEjecutarConsulta }) => {
             </>
           ) : (
             <>
-              <Tooltip title='Editar Vehículo' arrow>
+              <Tooltip title='Editar Venta' arrow>
                 <i
                   onClick={() => setEdit(!edit)}
-                  className='fas fa-pencil-alt text-yellow-700 hover:text-yellow-500'
+                  className='fas fa-pencil-alt hover:text-blue-500'
                 />
               </Tooltip>
-              <Tooltip title='Eliminar Vehículo' arrow>
+              <Tooltip title='Eliminar Venta' arrow>
                 <i
                   onClick={() => setOpenDialog(true)}
-                  className='fas fa-trash text-red-700 hover:text-red-500'
+                  className='fas fa-trash hover:text-red-500'
                 />
               </Tooltip>
             </>
