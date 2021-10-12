@@ -26,10 +26,6 @@ return(
         </div>
         <div className="hidden md:block">
           <div className="ml-4 flex items-center md:ml-6">
-          <div className=" md:flex  md:flex-1 ml-10 lg:w-1000  rounded-md px-1">
-              <input className=" w-full  focus:border-transparent focus:border-2 border-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-100 sm:text-sm inline-flex  rounded-md" placeholder="Buscar"/>
-              <i className='fas fa-search py-2 px-1 hover:bg-indigo-600 rounded-md shadow-sm whitespace-nowrap '></i>
-            </div>
             <div>
                 <button type="button" className="max-w-xs bg-indigo-500  rounded-full flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                   <span className="sr-only">Settings</span>
