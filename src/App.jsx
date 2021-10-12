@@ -21,9 +21,6 @@ import Ventas from 'pages/Admin/ventas';
 import Admin from 'pages/Admin/index';
 import AdminP from 'pages/Admin/perfil';
 import Vventas from 'pages/Vendedor/ventas';
-import AEditV from "pages/Admin/editarventa";
-import AEditU from "pages/Admin/editarusuario";
-import AEditP from "pages/Admin/editarproducto";
 
 import Vendedor from 'pages/Vendedor/index';
 import VendedorP from 'pages/Vendedor/perfil';
@@ -34,7 +31,7 @@ function App() {
   return (
     <Router>
       <Switch>
-      <Route path = {['/Admin','/Admin/Productos','/Admin/Ventas','/Admin/Usuarios','/Admin/Perfil','/Admin/EditarVenta','/Admin/EditarProducto','/Admin/EditarUsuario']}>
+      <Route path = {['/Admin','/Admin/Productos','/Admin/Ventas','/Admin/Usuarios','/Admin/Perfil']}>
         <LayoutAU>
             <Switch>
               <Route path='/Admin/Ventas' >
@@ -48,15 +45,6 @@ function App() {
               </Route>
               <Route path='/Admin/Perfil' >
                 <AdminP />
-              </Route>
-              <Route path='/Admin/EditarVenta' >
-              <AEditV />
-              </Route>
-              <Route path='/Admin/EditarProducto' >
-              <AEditP />
-              </Route>
-              <Route path='/Admin/EditarUsuario' >
-                <AEditU />
               </Route>
               <Route path='/Admin'>
                 <Admin />
