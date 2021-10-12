@@ -24,8 +24,6 @@ import Vventas from 'pages/Vendedor/ventas';
 
 import Vendedor from 'pages/Vendedor/index';
 import VendedorP from 'pages/Vendedor/perfil';
-import VRegistroV from "pages/Vendedor/registrarV";
-import VEditV from "pages/Vendedor/editarventa";
 
 function App() {
   return (
@@ -52,7 +50,7 @@ function App() {
             </Switch>
         </LayoutAU>
         </Route>
-        <Route path = {['/Vendedor','/Vendedor/Ventas','/Vendedor/Perfil','/Vendedor/RegistroVentas','/Vendedor/EditarVentas']}>
+        <Route path = {['/Vendedor','/Vendedor/Ventas','/Vendedor/Perfil']}>
         <LayoutU>
             <Switch>
               <Route path='/Vendedor/Ventas' >
@@ -60,12 +58,6 @@ function App() {
               </Route>
               <Route path='/Vendedor/Perfil' >
                 <VendedorP />
-              </Route>
-              <Route path='/Vendedor/RegistroVentas'>
-                <VRegistroV />
-              </Route>
-              <Route path='/Vendedor/EditarVentas'>
-                <VEditV />
               </Route>
               <Route path='/Vendedor' >
                 <Vendedor/>
