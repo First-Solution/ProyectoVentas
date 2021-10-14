@@ -5,39 +5,74 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
 import { nanoid } from 'nanoid';
-import { obtenerVentas } from 'utils/api'
+import { obtenerUsuarios } from 'utils/api'
 import {Dialog, Tooltip} from '@material-ui/core'
 
+ const RegistroU = () => {
+  const [mostrarTabla, setMostrarTabla] = useState(true)
+  const [usuarios, setUsuarios] = useState([])
+  const [textoBoton, setTextoBoton] = useState("Registrar nuevo usuario")
+  const [ejecutarConsulta, setEjecutarConsulta] = useState(true)
+
+  useEffect(() => {
+    console.log('consulta', ejecutarConsulta);
+    if (ejecutarConsulta) {
+      obtenerUsuarios(setUsuarios, setEjecutarConsulta);
+    }
+  }, [ejecutarConsulta]);
 
 
-    const RegistroU = () => {
-    const [mostrarTabla, setMostrarTabla] = useState(true)
-    const [usuarios, setUsuarios] = useState([])
-    const [textoBoton, setTextoBoton] = useState("Registrar nuevo usuario")
-    const [ejecutarConsulta, setEjecutarConsulta] = useState(true)
-  
-    useEffect(() =>{
-      // obtener lista de usuarios desde el back
-      setUsuarios(UsuarioBackend)
-  
-    },[])
-    useEffect(() => {
-      console.log('consulta', ejecutarConsulta);
-      if (ejecutarConsulta) {
-        obtenerVentas(setUsuarios, setEjecutarConsulta);
-      }
-    }, [ejecutarConsulta]);
-  
-  
-    useEffect(()=>{
-      if(mostrarTabla){
-        setTextoBoton("Registrar nuevo usuario")
-      }else{
-        setTextoBoton("Lista de usuarios")
-      }
-  
-    },[mostrarTabla])
-  
+  useEffect(() => {
+    //obtener lista de ventas desde el backend
+    if (mostrarTabla) {
+      setEjecutarConsulta(true);
+    }
+  }, [mostrarTabla]);
+
+
+
+  useEffect(()=>{
+    if(mostrarTabla){
+      setTextoBoton("Registrar nuevo Usuario")
+    }else{
+      setTextoBoton("Lista de Usuarios")
+    }
+
+  },[mostrarTabla])
+
+  return(
+    <div>
+      <h2 className="text-3xl font-extrabold text-gray-700">Pagina de administración de usuarios</h2>
+      {mostrarTabla ? (<TablaUsuaios listaUsuarios = {usuarios} setEjecutarConsulta={setEjecutarConsulta} />) :( <FormularioCrecionUsuarios 
+      setMostrarTabla ={setMostrarTabla} 
+      listaUsuarios={usuarios}
+      setUsuarios={setUsuarios}/>)}
+
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
+
+   
+
+      <button  type = "button" onClick={()=>setMostrarTabla(!mostrarTabla)} className="sm:auto mx-auto ml-8 whitespace-nowrap px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-900 hover:bg-indigo-700">
+      {textoBoton}
+      </button>
+    </div>
+  )
+}
+
+    
+
+
+
           const FilaUsuario= ({ usuario, setEjecutarConsulta }) => {
 
             const [edit, setEdit] = useState(false)
@@ -138,7 +173,7 @@ import {Dialog, Tooltip} from '@material-ui/core'
                     <td>
                       <select 
                         className = 'bg-gray-50 border border-gray-600 p-2 rounded-lg m-2'
-                        name='Estado'
+                        name='rol'
                         value={infoNuevoUsuario.rol}
                         onChange={(e) => setInfoNuevoUsuario({ ...infoNuevoUsuario, rol: e.target.value })}
                         >
@@ -173,7 +208,7 @@ import {Dialog, Tooltip} from '@material-ui/core'
                       </td>
           
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        {usuario.rol}
+                      <p className="text-sm text-gray-500">{usuario.rol}</p>
                       </td>
           
                       <td className="px-6 py-4 whitespace-nowrap">
@@ -255,7 +290,7 @@ import {Dialog, Tooltip} from '@material-ui/core'
             const [UsuariosFiltrados, setUsuariosFiltrados] = useState(listaUsuarios);
           
             useEffect(() => {
-              setVentasFiltradas(
+              setUsuariosFiltrados(
                 listaUsuarios.filter((elemento) => {
                   return JSON.stringify(elemento).toLowerCase().includes(busqueda.toLowerCase());
                 })
@@ -278,7 +313,7 @@ import {Dialog, Tooltip} from '@material-ui/core'
           
                     <thead className="bg-gray-50">
                     <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Id venta
+                      Id 
                     </th>
           
                     <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -405,7 +440,7 @@ import {Dialog, Tooltip} from '@material-ui/core'
                    Rol usuario
                     <select 
                       className = 'bg-gray-50 border border-gray-600 p-2 rounded-lg m-2'
-                      name='Estado'
+                      name='rol'
                       defaultValue={0}
                       >
           
@@ -425,14 +460,14 @@ import {Dialog, Tooltip} from '@material-ui/core'
                   <button 
                      type='submit' 
                     className= 'col-span-3 bg-indigo-400 p-2 rounded-full shadow-md hover:bg-indigo-600 text-white'
-                  > Registrar venta
+                  > Registrar Usuario
                   </button>
                 </form>
                 
               </div>
             )
           }
-          }
+          
     
 
 
