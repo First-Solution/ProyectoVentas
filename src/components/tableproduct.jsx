@@ -9,44 +9,10 @@ import {Dialog, Tooltip} from '@material-ui/core'
 
 
 
-/*const ventasBackend = [
-  {
-    idVenta: '01',
-    nombreCl: 'Camilo',
-    Estado: 'Embalaje',
-    correo: 'camilo@gmai.com',
-    valor: 200000,
-    fechaI: '22-01-2020',
-    fechaF: '18-11-2021',
-    responsable: 'Andrea',
-    producto: 'chaqueta'
-  },
-  {
-    idVenta: '02',
-    nombreCl: 'sergio',
-    Estado: 'Pendiente',
-    correo: 'sergio@gmai.com',
-    valor: 120000,
-    fechaI: '28-10-2020',
-    fechaF: '28-10-2021',
-    responsable: 'Andrea',
-    producto: 'chaqueta'
-  },
-  {
-    idVenta: '03',
-    nombreCl: 'alex',
-    Estado: 'Entregado',
-    correo: 'alex@gmai.com',
-    valor: 120000,
-    fechaI: '28-10-2020',
-    fechaF: '28-10-2021',
-    responsable: 'Andrea',
-    producto: 'camisa'
-  }
-];*/
 
 
-const RegistroV = () => {
+
+const RegistroU = () => {
   const [mostrarTabla, setMostrarTabla] = useState(true)
   const [ventas, setVentas] = useState([])
   const [textoBoton, setTextoBoton] = useState("Registrar nueva venta")
@@ -643,4 +609,4 @@ const FormularioCrecionVentas = ({setMostrarTabla, listaVentas, setVentas  }) =>
 
 
 
-  export default RegistroV;
+  export default RegistroU;
