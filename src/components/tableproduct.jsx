@@ -116,7 +116,7 @@ const FilaProducto= ({ producto, setEjecutarConsulta }) => {
     Producto: producto.Producto,
     Cantidad: producto.Cantidad,
     Valor: producto.Valor,
-    Estado: producto.Estado,
+    Estado: producto.Estado
   });
 
   const actualizarProducto = async () => {
@@ -232,9 +232,6 @@ const FilaProducto= ({ producto, setEjecutarConsulta }) => {
 
             <td className="px-6 py-4 whitespace-nowrap">
               <div className="flex items-center">
-                <div className="flex-shrink-0 h-10 w-10">
-                  <img className="h-10 w-10 rounded-full" src={im} alt=""/>
-                </div>
                 <div className="ml-4">
                   <div className="text-sm font-medium text-gray-900">
                     {producto.Producto}
@@ -384,57 +381,24 @@ const TablaProductos = ({ listaProductos, setEjecutarConsulta }) => {
              Editar/Eliminar
            </th>
 
+           </thead>
+
            <tbody>
             {productosFiltrados.map((producto)=>{
               return(
-                <FilaProducto key={nanoid()} venta={producto} setEjecutarConsulta = {setEjecutarConsulta} />
+                <FilaProducto key={nanoid()} producto={producto} setEjecutarConsulta = {setEjecutarConsulta} />
 
               )
 
             })}
 
+
+
           </tbody>
      
-          </thead>
-     
-          <tbody>
-            {listaProductos.map((producto)=>{
-              return(
-               <tr>
-               <td className="px-6 py-4 whitespace-nowrap">
-                <p className="text-sm text-gray-500">{producto.idProducto}</p>
-               </td>
-      
-                <td className="px-6 py-4 whitespace-nowrap">
-                  {producto.Producto}
-                </td>
-           
-               <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                 {producto.Cantidad}
-      
-               </td>
-               
-               <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                 {producto.Valor}
-      
-               </td>
-      
-      
-               <td className="px-6 py-4 whitespace-nowrap">
-                 {producto.Estado}
-               </td>
           
-      
-             
-               <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">editar/eliminar</td>
-             </tr>
-              )
      
-     
-            })}
-     
-          </tbody>
-
+          
           </table>
 
 
