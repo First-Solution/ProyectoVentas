@@ -4,7 +4,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
 import { nanoid } from 'nanoid';
-import { obtenerVentas } from 'utils/api'
+import { obtenerProductos } from 'utils/api'
 import {Dialog, Tooltip} from '@material-ui/core'
 
 
@@ -46,16 +46,16 @@ import {Dialog, Tooltip} from '@material-ui/core'
 ];*/
 
 
-const RegistroV = () => {
+const RegistroP = () => {
   const [mostrarTabla, setMostrarTabla] = useState(true)
-  const [ventas, setVentas] = useState([])
-  const [textoBoton, setTextoBoton] = useState("Registrar nueva venta")
+  const [productos, setProductos] = useState([])
+  const [textoBoton, setTextoBoton] = useState("Registrar nuevo producto")
   const [ejecutarConsulta, setEjecutarConsulta] = useState(true)
 
   useEffect(() => {
     console.log('consulta', ejecutarConsulta);
     if (ejecutarConsulta) {
-      obtenerVentas(setVentas, setEjecutarConsulta);
+      obtenerProductos(setProductos, setEjecutarConsulta);
     }
   }, [ejecutarConsulta]);
 
@@ -71,20 +71,20 @@ const RegistroV = () => {
 
   useEffect(()=>{
     if(mostrarTabla){
-      setTextoBoton("Registrar nueva venta")
+      setTextoBoton("Registrar nuevo Producto")
     }else{
-      setTextoBoton("Lista de ventas")
+      setTextoBoton("Lista de productos")
     }
 
   },[mostrarTabla])
 
   return(
     <div>
-      <h2 className="text-3xl font-extrabold text-gray-700">Pagina de administración de ventas</h2>
-      {mostrarTabla ? (<TablaVentas listaVentas = {ventas} setEjecutarConsulta={setEjecutarConsulta} />) :( <FormularioCrecionVentas 
+      <h2 className="text-3xl font-extrabold text-gray-700">Pagina de administración de productos</h2>
+      {mostrarTabla ? (<TablaProductos listaProductos = {productos} setEjecutarConsulta={setEjecutarConsulta} />) :( <FormularioCrecionProductos 
       setMostrarTabla ={setMostrarTabla} 
-      listaVentas={ventas}
-      setVentas={setVentas}/>)}
+      listaProductos={productos}
+      setProducos={setProductos}/>)}
 
       <ToastContainer
         position="top-center"
@@ -107,63 +107,59 @@ const RegistroV = () => {
   )
 }
 
-const FilaVenta= ({ venta, setEjecutarConsulta }) => {
+const FilaProducto= ({ producto, setEjecutarConsulta }) => {
 
   const [edit, setEdit] = useState(false)
   const [openDialog, setOpenDialog] = useState(false);
-  const [infoNuevaVenta, setInfoNuevaVenta] = useState({
-    idVenta: venta.idVenta,
-    nombreCl: venta.nombreCl,
-    Estado: venta.Estado,
-    correo: venta.correo,
-    valor: venta.valor,
-    fechaI: venta.fechaI,
-    fechaF: venta.fechaF,
-    responsable: venta.responsable,
-    producto: venta.producto
+  const [infoNuevoProducto, setInfoNuevoProducto] = useState({
+    idProducto: producto.idProducto,
+    Producto: producto.Producto,
+    Cantidad: producto.Cantidad,
+    Valor: producto.Valor,
+    Estado: producto.Estado,
   });
 
-  const actualizarVenta = async () => {
+  const actualizarProducto = async () => {
     //enviar la info al backend
     const options = {
       method: 'PATCH',
-      url: `http://localhost:5000/ventas/${venta._id}/`,
+      url: `http://localhost:5000/productos/${producto._id}/`,
       headers: { 'Content-Type': 'application/json' },
-      data: { ...infoNuevaVenta},
+      data: { ...infoNuevoProducto},
     };
 
     await axios
       .request(options)
       .then(function (response) {
         console.log(response.data);
-        toast.success('Venta modificada con éxito');
+        toast.success('Producto modificado con éxito');
         setEdit(false);
         setEjecutarConsulta(true);
       })
       .catch(function (error) {
-        toast.error('Error al modificar la venta');
+        toast.error('Error al modificar el poducto');
         console.error(error);
       });
   };
 
-  const eliminarVenta = async () => {
+  const eliminarProducto = async () => {
     const options = {
       method: 'DELETE',
-      url: `http://localhost:5000/ventas/${venta._id}/`,
+      url: `http://localhost:5000/Productos/${producto._id}/`,
       headers: { 'Content-Type': 'application/json' },
-      data: { id: venta._id },
+      data: { id: producto._id },
     };
 
     await axios
       .request(options)
       .then(function (response) {
         console.log(response.data);
-        toast.success('venta eliminada con éxito');
+        toast.success('producto eliminada con éxito');
         setEjecutarConsulta(true);
       })
       .catch(function (error) {
         console.error(error);
-        toast.error('Error al eliminar la venta');
+        toast.error('Error al eliminar el producto');
       });
     setOpenDialog(false);
   };
@@ -178,85 +174,60 @@ const FilaVenta= ({ venta, setEjecutarConsulta }) => {
             <input 
               className = 'bg-gray-50 border border-gray-600 p-2 rounded-lg m-2' 
               type='text' 
-              value={infoNuevaVenta.idVenta}
-              onChange={(e) => setInfoNuevaVenta({ ...infoNuevaVenta, name: e.target.value })}
+              value={infoNuevoProducto.idProducto}
+              onChange={(e) => setInfoNuevoProducto({ ...infoNuevoProducto, name: e.target.value })}
             />
           </td>
           <td>
             <input 
               className = 'bg-gray-50 border border-gray-600 p-2 rounded-lg m-2' 
               type='text' 
-              value={infoNuevaVenta.nombreCl}
-              onChange={(e) => setInfoNuevaVenta({ ...infoNuevaVenta, nombreCl: e.target.value })}
+              value={infoNuevoProducto.Producto}
+              onChange={(e) => setInfoNuevoProducto({ ...infoNuevoProducto, Producto: e.target.value })}
             />
           </td>
+
+          <td>
+            <input 
+              className = 'bg-gray-50 border border-gray-600 p-2 rounded-lg m-2' 
+              type='text' 
+              value={infoNuevoProducto.Cantidad}
+              onChange={(e) => setInfoNuevoProducto({ ...infoNuevoProducto, Cantidad: e.target.value })} 
+            />
+          </td>
+
+
+          <td>
+            <input 
+              className = 'bg-gray-50 border border-gray-600 p-2 rounded-lg m-2' 
+              type='text' 
+              value={infoNuevoProducto.Valor}
+              onChange={(e) => setInfoNuevoProducto({ ...infoNuevoProducto, Valor: e.target.value })} 
+            />
+          </td>
+
+
           <td>
           <select 
             className = 'bg-gray-50 border border-gray-600 p-2 rounded-lg m-2'
             name='Estado'
-            value={infoNuevaVenta.Estado}
-            onChange={(e) => setInfoNuevaVenta({ ...infoNuevaVenta, Estado: e.target.value })}
+            value={infoNuevoProducto.Estado}
+            onChange={(e) => setInfoNuevoProducto({ ...infoNuevoProducto, Estado: e.target.value })}
             >
 
            <option disabled value={0}>Seleccione una opción</option>
-           <option >Embalaje</option>
-           <option >Entregado</option>
+           <option >Disponible</option>
+           <option >Agotado</option>
          </select>
           </td>
-          <td>
-            <input 
-              className = 'bg-gray-50 border border-gray-600 p-2 rounded-lg m-2' 
-              type='text'
-              value={infoNuevaVenta.correo}
-              onChange={(e) => setInfoNuevaVenta({ ...infoNuevaVenta, correo: e.target.value })} 
-            />
-          </td>
-          <td>
-            <input 
-              className = 'bg-gray-50 border border-gray-600 p-2 rounded-lg m-2' 
-              type='text' 
-              value={infoNuevaVenta.valor}
-              onChange={(e) => setInfoNuevaVenta({ ...infoNuevaVenta, valor: e.target.value })} 
-            />
-          </td>
-          <td>
-            <input 
-              className = 'bg-gray-50 border border-gray-600 p-2 rounded-lg m-2' 
-              type='text'
-              value={infoNuevaVenta.fechaI}
-              onChange={(e) => setInfoNuevaVenta({ ...infoNuevaVenta, fechaI: e.target.value })}  
-            />
-          </td>
-          <td>
-            <input 
-              className = 'bg-gray-50 border border-gray-600 p-2 rounded-lg m-2' 
-              type='text' 
-              value={infoNuevaVenta.fechaF}
-              onChange={(e) => setInfoNuevaVenta({ ...infoNuevaVenta, fechaF: e.target.value })} 
-            />
-          </td>
-          <td>
-            <input 
-              className = 'bg-gray-50 border border-gray-600 p-2 rounded-lg m-2' 
-              type='text' 
-              value={infoNuevaVenta.responsable}
-              onChange={(e) => setInfoNuevaVenta({ ...infoNuevaVenta, responsable: e.target.value})} 
-            />
-          </td>
-          <td>
-            <input 
-              className = 'bg-gray-50 border border-gray-600 p-2 rounded-lg m-2' 
-              type='text' 
-              value={infoNuevaVenta.producto}
-              onChange={(e) => setInfoNuevaVenta({ ...infoNuevaVenta, producto: e.target.value})} 
-            />
-          </td>
+    
+        
         </>
       ) : (
         <>
 
             <td className="px-6 py-4 whitespace-nowrap">
-                  <p className="text-sm text-gray-500">{venta.idVenta}</p>
+                  <p className="text-sm text-gray-500">{producto.idProducto}</p>
             </td>
 
             <td className="px-6 py-4 whitespace-nowrap">
@@ -266,43 +237,31 @@ const FilaVenta= ({ venta, setEjecutarConsulta }) => {
                 </div>
                 <div className="ml-4">
                   <div className="text-sm font-medium text-gray-900">
-                    {venta.nombreCl}
+                    {producto.Producto}
                   </div>
-                    <div className="text-sm text-gray-500">
-                      {venta.correo}
-                    </div>
                 </div>
               </div>
             </td>
 
             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-              {venta.valor}
+              {producto.Cantidad}
             </td>
 
+            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+              {producto.Valor}
+            </td>
+
+
             <td className="px-6 py-4 whitespace-nowrap">
-                { venta.Estado === "Embalaje" ? <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
-                  {venta.Estado}
+                { producto.Estado === "Embalaje" ? <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
+                  {producto.Estado}
                     </span> : <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
-                    {venta.Estado}
+                    {producto.Estado}
                     </span>
                     }
             </td>
 
-            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-              {venta.fechaI}
-            </td>
-
-            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-              {venta.fechaF}
-            </td>
-
-            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-              {venta.responsable}
-            </td>
-
-            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-              {venta.producto}
-            </td>
+        
         </>
       )}
       <td>
@@ -311,7 +270,7 @@ const FilaVenta= ({ venta, setEjecutarConsulta }) => {
             <>
               <Tooltip title='Confirmar Edición' arrow>
                 <i
-                  onClick={() => actualizarVenta()}
+                  onClick={() => actualizarProducto()}
                   className='fas fa-check text-green-700 hover:text-green-500'
                 />
               </Tooltip>
@@ -324,13 +283,13 @@ const FilaVenta= ({ venta, setEjecutarConsulta }) => {
             </>
           ) : (
             <>
-              <Tooltip title='Editar Venta' arrow>
+              <Tooltip title='Editar Producto' arrow>
                 <i
                   onClick={() => setEdit(!edit)}
                   className='fas fa-pencil-alt hover:text-blue-500'
                 />
               </Tooltip>
-              <Tooltip title='Eliminar Venta' arrow>
+              <Tooltip title='Eliminar Producto' arrow>
                 <i
                   onClick={() => setOpenDialog(true)}
                   className='fas fa-trash hover:text-red-500'
@@ -342,11 +301,11 @@ const FilaVenta= ({ venta, setEjecutarConsulta }) => {
         <Dialog open={openDialog}>
           <div className='p-8 flex flex-col'>
             <h1 className='text-gray-900 text-2xl font-bold'>
-              ¿Está seguro de querer eliminar la venta?
+              ¿Está seguro de querer eliminar el producto?
             </h1>
             <div className='flex w-full items-center justify-center my-4'>
               <button
-                onClick={() => eliminarVenta()}
+                onClick={() => eliminarProducto()}
                 className='mx-2 px-4 py-2 bg-green-500 text-white hover:bg-green-700 rounded-md shadow-md'
               >
                 Sí
@@ -369,17 +328,17 @@ const FilaVenta= ({ venta, setEjecutarConsulta }) => {
 }
 
 
-const TablaVentas = ({ listaVentas, setEjecutarConsulta }) => {
+const TablaProductos = ({ listaProductos, setEjecutarConsulta }) => {
   const [busqueda, setBusqueda] = useState('');
-  const [ventasFiltradas, setVentasFiltradas] = useState(listaVentas);
+  const [productosFiltrados, setProductosFiltrados] = useState(listaProductos);
 
   useEffect(() => {
-    setVentasFiltradas(
-      listaVentas.filter((elemento) => {
+    setProductosFiltrados(
+      listaProductos.filter((elemento) => {
         return JSON.stringify(elemento).toLowerCase().includes(busqueda.toLowerCase());
       })
     );
-  }, [busqueda, listaVentas]);
+  }, [busqueda, listaProductos]);
 
 
   /*useEffect(()=>{
@@ -398,56 +357,83 @@ const TablaVentas = ({ listaVentas, setEjecutarConsulta }) => {
 
         <table className="min-w-full divide-y divide-gray-200">
 
-          <thead className="bg-gray-50">
-          <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-            Id venta
-          </th>
+        <thead className="bg-gray-50">
+           <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+             Id
+           </th>
 
-          <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-            Cliente
-          </th>
 
-          <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-            Valor
-          </th>
 
-          <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-            Estado
-          </th>
+           <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+             Producto
+           </th>
+     
+           <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+             Cantidad
+           </th>
+     
+           <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+             Valor
+           </th>
+           
+           <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+             Estado
+           </th>
+     
+           <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+             Editar/Eliminar
+           </th>
 
-          <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-            Fecha inicial
-          </th>
-
-          <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-            Fecha final
-          </th>
-
-          <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-            Responsable
-          </th>
-
-          <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-            Producto
-          </th>
-
-          <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-            Editar/Eliminar
-          </th>
-
-          </thead>
-
-          <tbody>
-            {ventasFiltradas.map((venta)=>{
+           <tbody>
+            {productosFiltrados.map((producto)=>{
               return(
-                <FilaVenta key={nanoid()} venta={venta} setEjecutarConsulta = {setEjecutarConsulta} />
+                <FilaProducto key={nanoid()} venta={producto} setEjecutarConsulta = {setEjecutarConsulta} />
 
               )
 
             })}
 
           </tbody>
-
+     
+          </thead>
+     
+          <tbody>
+            {listaProductos.map((producto)=>{
+              return(
+               <tr>
+               <td className="px-6 py-4 whitespace-nowrap">
+                <p className="text-sm text-gray-500">{producto.idProducto}</p>
+               </td>
+      
+                <td className="px-6 py-4 whitespace-nowrap">
+                  {producto.Producto}
+                </td>
+           
+               <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                 {producto.Cantidad}
+      
+               </td>
+               
+               <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                 {producto.Valor}
+      
+               </td>
+      
+      
+               <td className="px-6 py-4 whitespace-nowrap">
+                 {producto.Estado}
+               </td>
+          
+      
+             
+               <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">editar/eliminar</td>
+             </tr>
+              )
+     
+     
+            })}
+     
+          </tbody>
 
           </table>
 
@@ -460,7 +446,7 @@ const TablaVentas = ({ listaVentas, setEjecutarConsulta }) => {
 }
 
 
-const FormularioCrecionVentas = ({setMostrarTabla, listaVentas, setVentas  }) => {
+const FormularioCrecionProductos = ({setMostrarTabla, listaProductos, setProductos  }) => {
 
   const form = useRef(null);
   
@@ -497,38 +483,34 @@ const FormularioCrecionVentas = ({setMostrarTabla, listaVentas, setVentas  }) =>
     
     e.preventDefault();
     const fd = new FormData(form.current);
-    const nuevaVenta = {};
+    const nuevoProducto = {};
     fd.forEach((value, key) => {
-      nuevaVenta[key] = value;
-      console.log(nuevaVenta[key], key)
+      nuevoProducto[key] = value;
+      console.log(nuevoProducto[key], key)
     });
 
     const options = {
       method: 'POST',
-      url: 'http://localhost:5000/ventas/',
+      url: 'http://localhost:5000/productos/',
       headers: { 'Content-Type': 'application/json' },
       //data la informacion que pide del backend
       data: {  
-        idVenta: nuevaVenta.idVenta,
-        nombreCl: nuevaVenta.nombreCl,
-        Estado: nuevaVenta.Estado,
-        correo: nuevaVenta.correo,
-        valor: nuevaVenta.valor,
-        fechaI: nuevaVenta.fechaI,
-        fechaF: nuevaVenta.fechaF,
-        responsable: nuevaVenta.responsable,
-        producto: nuevaVenta.producto },
+        idProducto: nuevoProducto.idProducto,
+        Producto: nuevoProducto.Producto,
+        Cantidad: nuevoProducto.Cantidad,
+        Valor: nuevoProducto.Valor,
+        Estado: nuevoProducto.Estado },
     };
 
     await axios
       .request(options)
       .then(function (response) {
         console.log(response.data);
-        toast.success('Venta creada con exito');
+        toast.success('Productocreado con exito');
       })
       .catch(function (error) {
         console.error(error);
-        toast.error('Error al registrar la venta');
+        toast.error('Error al registrar el producto');
       });
 
     setMostrarTabla(true);
@@ -545,102 +527,72 @@ const FormularioCrecionVentas = ({setMostrarTabla, listaVentas, setVentas  }) =>
     toast.success("Venta guardada correctamente")
     setVentas([...listaVentas, nuevaVenta])*/
 
-  return(
-    <div className='flex flex-col items-center justify-center'>
-      <h2 className='text-2xl font-extrabold text-gray-500 p-2' >Registar nueva venta</h2>
-
-      <form ref={form} onSubmit={submitForm} className = 'grid grid-cols-3'>
-
-        <label htmlFor="id venta" className='flex flex-col'>
-          ID Venta
-          <input 
-          name='idVenta'
-          className = 'bg-gray-50 border border-gray-600 p-2 rounded-lg m-2' 
-          type='text' 
-          />
-        </label>
-       
-       <label htmlFor="nombre cliente" className='flex flex-col'>
-         Nombre Cliente
-         <input className = 'bg-gray-50 border border-gray-600 p-2 rounded-lg m-2' 
-         type='text' 
-         name = 'nombreCl'
-         />
-       </label>
-
-       <label htmlFor="estado venta" className='flex flex-col'>
-         Estado venta
-          <select 
-            className = 'bg-gray-50 border border-gray-600 p-2 rounded-lg m-2'
-            name='Estado'
-            defaultValue={0}
-            >
-
-           <option disabled value={0}>Seleccione una opción</option>
-           <option >Embalaje</option>
-           <option >Entregado</option>
-         </select>
-       </label>
-
-       <label htmlFor="correo" className='flex flex-col'>
-         Correo Cliente
-         <input className = 'bg-gray-50 border border-gray-600 p-2 rounded-lg m-2' 
-         type='text'
-         name='correo'
-         />
-       </label>
-
-       <label htmlFor="valor" className='flex flex-col'>
-         Valor venta
-         <input className = 'bg-gray-50 border border-gray-600 p-2 rounded-lg m-2'
-          type='number' min = '0' 
-          name='valor'
-         />
-       </label>
-
-       <label htmlFor="fecha inicial" className='flex flex-col'>
-         Fecha inicial
-         <input className = 'bg-gray-50 border border-gray-600 p-2 rounded-lg m-2' 
-         type='date' 
-         name='fechaI'
-         />
-       </label>
-
-       <label htmlFor="fecha final" className='flex flex-col'>
-         Fecha final
-         <input className = 'bg-gray-50 border border-gray-600 p-2 rounded-lg m-2'
-         type='date' 
-         name='fechaF'
-         />
-       </label>
-
-       <label htmlFor="" className='flex flex-col'>
-         Responsable
-         <input className = 'bg-gray-50 border border-gray-600 p-2 rounded-lg m-2' 
-         type='text'
-         name='responsable'
-         />
-       </label>
-
-       <label htmlFor="" className='flex flex-col'>
-         Producto
-         <input className = 'bg-gray-50 border border-gray-600 p-2 rounded-lg m-2' 
-         type='text' 
-         name='producto'
-         />
-       </label>
+    return(
+      <div className='flex flex-col items-center justify-center'>
+        <h2 className='text-2xl font-extrabold text-gray-500 p-2' >Registar nuevo producto</h2>
+  
+        <form ref={form} onSubmit={submitForm} className = 'grid grid-cols-3'>
+  
+          <label htmlFor="id producto" className='flex flex-col'>
+            ID 
+            <input 
+            name='idProducto'
+            className = 'bg-gray-50 border border-gray-600 p-2 rounded-lg m-2' 
+            type='text' 
+            />
+          </label>
+         
+         <label htmlFor="nombre producto" className='flex flex-col'>
+           Nombre Producto
+           <input className = 'bg-gray-50 border border-gray-600 p-2 rounded-lg m-2' 
+           type='text' 
+           name = 'Producto'
+           />
+         </label>
+  
+         <label htmlFor="estado producto" className='flex flex-col'>
+           Estado producto
+            <select 
+              className = 'bg-gray-50 border border-gray-600 p-2 rounded-lg m-2'
+              name='Estado'
+              defaultValue={0}
+              >
+  
+             <option disabled value={0}>Seleccione una opción</option>
+             <option >Disponible</option>
+             <option >Agotado</option>
+           </select>
+         </label>
+  
+         <label htmlFor="valor" className='flex flex-col'>
+           Valor
+           <input className = 'bg-gray-50 border border-gray-600 p-2 rounded-lg m-2'
+            type='number' min = '0' 
+            name='Valor'
+           />
+         </label>
+   
+         <label htmlFor="cantidad" className='flex flex-col'>
+           Cantidad
+           <input className = 'bg-gray-50 border border-gray-600 p-2 rounded-lg m-2'
+            type='number' min = '0' 
+            name='Cantidad'
+           />
+         </label>
+  
+  
+          
+          <button 
+             type='submit' 
+            className= 'col-span-3 bg-indigo-400 p-2 rounded-full shadow-md hover:bg-indigo-600 text-white'
+          > Registrar producto
+          </button>
+        </form>
         
-        <button 
-           type='submit' 
-          className= 'col-span-3 bg-indigo-400 p-2 rounded-full shadow-md hover:bg-indigo-600 text-white'
-        > Registrar venta
-        </button>
-      </form>
-      
-    </div>
-  )
+      </div>
+    )
 }
 
 
 
-  export default RegistroV;
+  export default RegistroP;
