@@ -6,13 +6,10 @@ import axios from 'axios';
 import { nanoid } from 'nanoid';
 import { obtenerProductos,crearProducto } from 'utils/api'
 import {Dialog, Tooltip} from '@material-ui/core'
+import ReactLoading from 'react-loading';
 
 
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 0134dc47a2a13979bec02d2ba62c7cdd6d752ea1
 
 
 const RegistroP = () => {
@@ -20,19 +17,27 @@ const RegistroP = () => {
   const [productos, setProductos] = useState([])
   const [textoBoton, setTextoBoton] = useState("Registrar nuevo producto")
   const [ejecutarConsulta, setEjecutarConsulta] = useState(true)
-
+  const [loading,setloading] = useState(false);
   useEffect(() => {
     console.log('consulta', ejecutarConsulta);
-    if (ejecutarConsulta) {
-      obtenerProductos(
+    const fetchProductos = async ()=>{
+      setloading(true);
+      await obtenerProductos(
         (response)=> {
           setProductos(response.data)
+          setloading(false);
+          setEjecutarConsulta(false);
         },
         (error)=> {
           console.error(error);
         }
         );
-      setEjecutarConsulta(false);
+      
+        
+    }
+    if (ejecutarConsulta) {
+      fetchProductos();
+     
     }
   }, [ejecutarConsulta]);
 
@@ -58,7 +63,12 @@ const RegistroP = () => {
   return(
     <div>
       <h2 className="text-3xl font-extrabold text-gray-700">Pagina de administración de productos</h2>
-      {mostrarTabla ? (<TablaProductos listaProductos = {productos} setEjecutarConsulta={setEjecutarConsulta} />) :( <FormularioCrecionProductos 
+      {mostrarTabla ? (<TablaProductos loading={loading}
+      
+      
+      listaProductos = {productos} setEjecutarConsulta={setEjecutarConsulta} />) 
+      
+      :( <FormularioCrecionProductos 
       setMostrarTabla ={setMostrarTabla} 
       listaProductos={productos}
       setProducos={setProductos}/>)}
@@ -101,7 +111,7 @@ const FilaProducto= ({ producto, setEjecutarConsulta }) => {
     const options = {
       method: 'PATCH',
       url: `http://localhost:5000/productos/${producto._id}/`,
-      headers: { 'Content-Type': 'application/json' },
+      headers: { Authorization: `Bearer ${localStorage.getItem('token')}`,'Content-Type': 'application/json' },
       data: { ...infoNuevoProducto},
     };
 
@@ -123,7 +133,7 @@ const FilaProducto= ({ producto, setEjecutarConsulta }) => {
     const options = {
       method: 'DELETE',
       url: `http://localhost:5000/Productos/${producto._id}/`,
-      headers: { 'Content-Type': 'application/json' },
+      headers: { Authorization: `Bearer ${localStorage.getItem('token')}`,'Content-Type': 'application/json' },
       data: { id: producto._id },
     };
 
@@ -302,7 +312,7 @@ const FilaProducto= ({ producto, setEjecutarConsulta }) => {
 }
 
 
-const TablaProductos = ({ listaProductos, setEjecutarConsulta }) => {
+const TablaProductos = ({loading, listaProductos, setEjecutarConsulta }) => {
   const [busqueda, setBusqueda] = useState('');
   const [productosFiltrados, setProductosFiltrados] = useState(listaProductos);
 
@@ -328,7 +338,9 @@ const TablaProductos = ({ listaProductos, setEjecutarConsulta }) => {
         value={busqueda}
         onChange={(e) => setBusqueda(e.target.value)}
         />
-
+        {loading?<ReactLoading type={"cylon"} color={"#818CF8"} height={667} width={375} />:
+        
+        
         <table className="min-w-full divide-y divide-gray-200">
 
         <thead className="bg-gray-50">
@@ -378,7 +390,7 @@ const TablaProductos = ({ listaProductos, setEjecutarConsulta }) => {
           
           </table>
 
-
+        }
     </div>
 
 

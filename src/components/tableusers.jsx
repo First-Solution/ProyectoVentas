@@ -98,7 +98,7 @@ import { crearUsuario } from "utils/api";
               const options = {
                 method: 'PATCH',
                 url: `http://localhost:5000/usuarios/${usuario._id}/`,
-                headers: { 'Content-Type': 'application/json' },
+                headers: { Authorization: `Bearer ${localStorage.getItem('token')}`,'Content-Type': 'application/json' },
                 data: { ...infoNuevoUsuario},
               };
           
@@ -120,7 +120,7 @@ import { crearUsuario } from "utils/api";
               const options = {
                 method: 'DELETE',
                 url: `http://localhost:5000/usuarios/${usuario._id}/`,
-                headers: { 'Content-Type': 'application/json' },
+                headers: { Authorization: `Bearer ${localStorage.getItem('token')}`,'Content-Type': 'application/json' },
                 data: { id: usuario._id },
               };
           

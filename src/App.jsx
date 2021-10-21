@@ -30,7 +30,7 @@ function App() {
     <Auth0Provider
     domain="firstsolution-proyventas.us.auth0.com"
     clientId="T0DBfOUlgSC0sV9QbcTxFtWx1mLINKJp"
-    redirectUri={window.location.origin}
+    redirectUri={"http://localhost:3000/Admin"}
     audience = 'api-autenticacion-ventas-mintic'
     >
     <Router>

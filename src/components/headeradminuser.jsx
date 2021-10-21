@@ -4,8 +4,11 @@ import perfil from 'media/perfil.png'
 import settings from 'media/setings.png';
 import { useAuth0 } from "@auth0/auth0-react";
 const Header  = () =>{
-  const { logout } = useAuth0();
-  
+  const { user, logout } = useAuth0();
+  const cerrarsesion = () =>{
+  logout({ returnTo: window.location.origin })
+    localStorage.setItem('token',null);
+  }
 return(
 <>
 <div>
@@ -30,7 +33,7 @@ return(
         <div className="hidden md:block">
           <div className="ml-4 flex items-center md:ml-6">
           <div>
-                <button onClick={() => logout({ returnTo: window.location.origin })}  className="max-w-xs bg-indigo-500  rounded-full flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" >
+                <button onClick={() => cerrarsesion()}  className="max-w-xs bg-indigo-500  rounded-full flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" >
                   
                   <img className="h-5 w-5 rounded-full" src={settings} alt=""/>
                   
@@ -41,7 +44,7 @@ return(
                 <button type="button" className="max-w-xs bg-indigo-500  rounded-full flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                   <span className="sr-only">Open user menu</span>
                   <Link to = '/Vendedor/Perfil'>
-                    <img className="h-8 w-8 rounded-full" src={perfil} alt=""/>
+                    <img className="h-8 w-8 rounded-full" src={user.picture} alt=""/>
                   </Link>
                   
                 </button>

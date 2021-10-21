@@ -1,7 +1,8 @@
 import Perfile from 'media/perfil.png';
 import react,{useState,useEffect} from "react";
-
+import { useAuth0 } from "@auth0/auth0-react";
 const Perfil = () => {
+  const { user, logout } = useAuth0();
     const UsuarioBackend = [
         {   Nombre:'Camilo',
             correo: 'Camilo@gmail.com',
@@ -15,11 +16,11 @@ const Perfil = () => {
         <div className="max-w-md mx-auto md:max-w-lg">
             <div className="w-full">
                 <div className="bg-white p-3 rounded text-center ">
-                    <div className="flex justify-center"> <img class="rounded-full" src={Perfile} width="100"/> </div>
+                    <div className="flex justify-center"> <img class="rounded-full" src={user.picture} width="100"/> </div>
 
                     <div className="text-center">
-                        <h1 className="text-2xl mt-2">John Doe</h1>
-                          
+                        <h1 className="text-2xl mt-2">{user.name}</h1>
+                        <h1 className="text-xl mt-2">{user.email}</h1> 
                     {mostrarCampos &&  
                             <Edision/>
                          } 

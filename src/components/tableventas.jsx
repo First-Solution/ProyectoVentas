@@ -101,7 +101,7 @@ const FilaVenta= ({ venta, setEjecutarConsulta }) => {
     const options = {
       method: 'PATCH',
       url: `http://localhost:5000/ventas/${venta._id}/`,
-      headers: { 'Content-Type': 'application/json' },
+      headers: { Authorization: `Bearer ${localStorage.getItem('token')}`,'Content-Type': 'application/json' },
       data: { ...infoNuevaVenta},
     };
 
@@ -123,7 +123,7 @@ const FilaVenta= ({ venta, setEjecutarConsulta }) => {
     const options = {
       method: 'DELETE',
       url: `http://localhost:5000/ventas/${venta._id}/`,
-      headers: { 'Content-Type': 'application/json' },
+      headers: { Authorization: `Bearer ${localStorage.getItem('token')}`,'Content-Type': 'application/json' },
       data: { id: venta._id },
     };
 
