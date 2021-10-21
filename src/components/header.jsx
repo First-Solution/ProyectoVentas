@@ -1,6 +1,8 @@
   import { Link } from 'react-router-dom';
 import logo from 'media/logo.svg';
+import { useAuth0 } from "@auth0/auth0-react";
 const Header  = () =>{
+  const { loginWithRedirect } = useAuth0();
     return(
       <>
       <header>
@@ -13,11 +15,11 @@ const Header  = () =>{
                 </Link>
             </div>
             <div className="hidden md:flex items-center justify-center md:flex-1 lg:w-0">
-              <Link to='/login'>
-              <button  className="sm:auto mx-auto ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700">
+              
+              <button onClick={() => loginWithRedirect()} className="sm:auto mx-auto ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700">
                 Ingresar
               </button>
-             </Link>
+            
             </div>
           </div>
         </div>

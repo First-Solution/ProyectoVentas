@@ -7,6 +7,7 @@ import axios from 'axios';
 import { nanoid } from 'nanoid';
 import { obtenerUsuarios } from 'utils/api'
 import {Dialog, Tooltip} from '@material-ui/core'
+import { crearUsuario } from "utils/api";
 
  const RegistroU = () => {
   const [mostrarTabla, setMostrarTabla] = useState(true)
@@ -17,10 +18,17 @@ import {Dialog, Tooltip} from '@material-ui/core'
   useEffect(() => {
     console.log('consulta', ejecutarConsulta);
     if (ejecutarConsulta) {
-      obtenerUsuarios(setUsuarios, setEjecutarConsulta);
+      obtenerUsuarios(
+        (response)=> {
+          setUsuarios(response.data)
+        },
+        (error)=> {
+          console.error(error);
+        }
+        );
+      setEjecutarConsulta(false);
     }
   }, [ejecutarConsulta]);
-
 
   useEffect(() => {
     //obtener lista de ventas desde el backend
@@ -369,33 +377,34 @@ import {Dialog, Tooltip} from '@material-ui/core'
                 nuevoUsuario[key] = value;
                 console.log(nuevoUsuario[key], key)
               });
-          
-              const options = {
-                method: 'POST',
-                url: 'http://localhost:5000/usuarios/',
-                headers: { 'Content-Type': 'application/json' },
-                //data la informacion que pide del backend
-                data: {  
+              
+              await crearUsuario(
+                {
+                idUsuario: nuevoUsuario.idUsuario,
+                nombreCl:nuevoUsuario.nombreCl,
+                Estado : nuevoUsuario.Estado,
+                correo: nuevoUsuario.correo,
+                rol: nuevoUsuario.rol,
+              },
+               
+               (response)=>{
+                 console.log(response.data)
+                 toast.success('Usuario Registrado Con Exito');
+                 obtenerUsuarios(
+                  (response)=> {
+                    setUsuarios(response.data)
+                  },
+                  (error)=> {
+                    console.error(error);
+                  }
+                  );
+                },
+               (error)=>{
+                 console.log(error)
+               toast.error('Error En la creacion de Usuario');
+               }
+               );
 
-                  idUsuario: nuevoUsuario.idUsuario,
-                  nombreCl:nuevoUsuario.nombreCl,
-                  Estado : nuevoUsuario.Estado,
-                  correo: nuevoUsuario.correo,
-                  rol: nuevoUsuario.rol
-                }
-              };
-          
-              await axios
-                .request(options)
-                .then(function (response) {
-                  console.log(response.data);
-                  toast.success('Usuario creada con exito');
-                })
-                .catch(function (error) {
-                  console.error(error);
-                  toast.error('Error al registrar la Usuario');
-                });
-          
               setMostrarTabla(true);
             };
     

@@ -4,46 +4,12 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
 import { nanoid } from 'nanoid';
-import { obtenerProductos } from 'utils/api'
+import { obtenerProductos,crearProducto } from 'utils/api'
 import {Dialog, Tooltip} from '@material-ui/core'
 
 
 
-/*const ventasBackend = [
-  {
-    idVenta: '01',
-    nombreCl: 'Camilo',
-    Estado: 'Embalaje',
-    correo: 'camilo@gmai.com',
-    valor: 200000,
-    fechaI: '22-01-2020',
-    fechaF: '18-11-2021',
-    responsable: 'Andrea',
-    producto: 'chaqueta'
-  },
-  {
-    idVenta: '02',
-    nombreCl: 'sergio',
-    Estado: 'Pendiente',
-    correo: 'sergio@gmai.com',
-    valor: 120000,
-    fechaI: '28-10-2020',
-    fechaF: '28-10-2021',
-    responsable: 'Andrea',
-    producto: 'chaqueta'
-  },
-  {
-    idVenta: '03',
-    nombreCl: 'alex',
-    Estado: 'Entregado',
-    correo: 'alex@gmai.com',
-    valor: 120000,
-    fechaI: '28-10-2020',
-    fechaF: '28-10-2021',
-    responsable: 'Andrea',
-    producto: 'camisa'
-  }
-];*/
+
 
 
 const RegistroP = () => {
@@ -55,7 +21,15 @@ const RegistroP = () => {
   useEffect(() => {
     console.log('consulta', ejecutarConsulta);
     if (ejecutarConsulta) {
-      obtenerProductos(setProductos, setEjecutarConsulta);
+      obtenerProductos(
+        (response)=> {
+          setProductos(response.data)
+        },
+        (error)=> {
+          console.error(error);
+        }
+        );
+      setEjecutarConsulta(false);
     }
   }, [ejecutarConsulta]);
 
@@ -414,35 +388,6 @@ const FormularioCrecionProductos = ({setMostrarTabla, listaProductos, setProduct
 
   const form = useRef(null);
   
-  /*const [idVenta,setIdVenta] = useState ("");
-  const [nombreCliente,setNombreCliente] = useState ("");
-  const [estado,setEstado] = useState ("");
-  const [correo,setCorreo] = useState ("");
-  const [valor,setValor] = useState ();
-  const [fechaInicial,setFechaInicial] = useState ();
-  const [fechaFinal,setFechaFinal] = useState ();
-  const [responsable,setResponsable] = useState ("");
-  const [producto,setProducto] = useState ("");*/
-  
-  /*const enviarBack = () =>{
-    console.log("Datos enviados al backend", producto, fechaInicial, fechaFinal )
-    toast.success("Guardado con exito")
-    funcParaMostrarTabla(true)
-    funcParaAgregarVenta([...listaVentas, {
-      idVenta: idVenta,
-      nombreCl: nombreCliente,
-      Estado: estado,
-      correo: correo,
-      valor: valor,
-      fechaI: fechaInicial,
-      fechaF: fechaFinal,
-      responsable: responsable,
-      producto: producto
-    }])
-  }*/
-
-  
-
   const submitForm = async (e) => {
     
     e.preventDefault();
@@ -453,30 +398,36 @@ const FormularioCrecionProductos = ({setMostrarTabla, listaProductos, setProduct
       console.log(nuevoProducto[key], key)
     });
 
-    const options = {
-      method: 'POST',
-      url: 'http://localhost:5000/productos/',
-      headers: { 'Content-Type': 'application/json' },
-      //data la informacion que pide del backend
-      data: {  
-        idProducto: nuevoProducto.idProducto,
-        Producto: nuevoProducto.Producto,
-        Cantidad: nuevoProducto.Cantidad,
-        Valor: nuevoProducto.Valor,
-        Estado: nuevoProducto.Estado },
-    };
+    await crearProducto(
+      {
+      idProducto: nuevoProducto.idProducto,
+      Producto: nuevoProducto.Producto,
+      Cantidad: nuevoProducto.Cantidad,
+      Valor: nuevoProducto.Valor,
+      Estado: nuevoProducto.Estado,
+    },
+     
+     (response)=>{
+       console.log(response.data)
+       toast.success('Producto Registrado Con Exito');
+       obtenerProductos(
+        (response)=> {
+          setProductos(response.data)
+        },
+        (error)=> {
+          console.error(error);
+        }
+        );
 
-    await axios
-      .request(options)
-      .then(function (response) {
-        console.log(response.data);
-        toast.success('Productocreado con exito');
-      })
-      .catch(function (error) {
-        console.error(error);
-        toast.error('Error al registrar el producto');
-      });
-
+        
+      },
+     (error)=>{
+       console.log(error)
+     toast.error('Error En la creacion de la venta');
+     }
+     );
+  
+      
     setMostrarTabla(true);
   };
 
