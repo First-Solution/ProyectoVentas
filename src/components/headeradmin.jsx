@@ -3,9 +3,12 @@ import { Link } from 'react-router-dom';
 import logo from 'media/venta.png';
 import perfil from 'media/perfil.png'
 import settings from 'media/setings.png';
+import { useAuth0 } from "@auth0/auth0-react";
 const Header  = () =>{
+  const { logout } = useAuth0();
+  
 return(
-<>
+
 <div>
   <nav className="bg-indigo-500 rounded-md">
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-6">
@@ -38,14 +41,12 @@ return(
         <div className="hidden md:block">
           <div className="ml-4 flex items-center md:ml-6">
             <div>
-                <button type="button" className="max-w-xs bg-indigo-500  rounded-full flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
-                  <span className="sr-only">Settings</span>
+                <button onClick={() => logout({ returnTo: window.location.origin })}  className="max-w-xs bg-indigo-500  rounded-full flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" >
+                  
                   <img className="h-5 w-5 rounded-full" src={settings} alt=""/>
                   
                 </button>
               </div>
-
-
             <div className="ml-3 relative">
               <div>
                 <button type="button" className="max-w-xs bg-indigo-500  rounded-full flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
@@ -86,7 +87,7 @@ return(
   
 </div>
   
-</>
+
 );
 }
 export default Header;

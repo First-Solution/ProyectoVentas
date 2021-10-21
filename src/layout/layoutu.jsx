@@ -1,8 +1,9 @@
 import Header from "components/headeradminuser";
 import Footer from "components/footer";
 
+import PrivateRoute from 'components/PrivateRoute'
 const LayoutU = ({children}) => {
-    return(
+    return(<PrivateRoute>
         <div className= "Maincontainer max-w-7xl mx-auto px-4 py-6 sm:px-6">
 
         <Header/>
@@ -10,7 +11,7 @@ const LayoutU = ({children}) => {
           {children}
         </main>
           <Footer/>
-      </div>
+      </div></PrivateRoute>
     );
 }
 export default LayoutU;

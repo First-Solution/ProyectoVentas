@@ -24,9 +24,15 @@ import Vventas from 'pages/Vendedor/ventas';
 
 import Vendedor from 'pages/Vendedor/index';
 import VendedorP from 'pages/Vendedor/perfil';
-
+import { Auth0Provider } from "@auth0/auth0-react";
 function App() {
   return (
+    <Auth0Provider
+    domain="firstsolution-proyventas.us.auth0.com"
+    clientId="T0DBfOUlgSC0sV9QbcTxFtWx1mLINKJp"
+    redirectUri={window.location.origin}
+    audience = 'api-autenticacion-ventas-mintic'
+    >
     <Router>
       <Switch>
       <Route path = {['/Admin','/Admin/Productos','/Admin/Ventas','/Admin/Usuarios','/Admin/Perfil']}>
@@ -86,6 +92,8 @@ function App() {
         
       </Switch>      
     </Router>
+
+    </Auth0Provider>
   );
 }
 

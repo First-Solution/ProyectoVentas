@@ -6,44 +6,9 @@ import axios from 'axios';
 import { nanoid } from 'nanoid';
 import { obtenerVentas } from 'utils/api'
 import {Dialog, Tooltip} from '@material-ui/core'
+import { crearVenta } from "utils/api";
 
 
-
-/*const ventasBackend = [
-  {
-    idVenta: '01',
-    nombreCl: 'Camilo',
-    Estado: 'Embalaje',
-    correo: 'camilo@gmai.com',
-    valor: 200000,
-    fechaI: '22-01-2020',
-    fechaF: '18-11-2021',
-    responsable: 'Andrea',
-    producto: 'chaqueta'
-  },
-  {
-    idVenta: '02',
-    nombreCl: 'sergio',
-    Estado: 'Pendiente',
-    correo: 'sergio@gmai.com',
-    valor: 120000,
-    fechaI: '28-10-2020',
-    fechaF: '28-10-2021',
-    responsable: 'Andrea',
-    producto: 'chaqueta'
-  },
-  {
-    idVenta: '03',
-    nombreCl: 'alex',
-    Estado: 'Entregado',
-    correo: 'alex@gmai.com',
-    valor: 120000,
-    fechaI: '28-10-2020',
-    fechaF: '28-10-2021',
-    responsable: 'Andrea',
-    producto: 'camisa'
-  }
-];*/
 
 
 const RegistroV = () => {
@@ -52,10 +17,19 @@ const RegistroV = () => {
   const [textoBoton, setTextoBoton] = useState("Registrar nueva venta")
   const [ejecutarConsulta, setEjecutarConsulta] = useState(true)
 
+
   useEffect(() => {
     console.log('consulta', ejecutarConsulta);
     if (ejecutarConsulta) {
-      obtenerVentas(setVentas, setEjecutarConsulta);
+      obtenerVentas(
+        (response)=> {
+          setVentas(response.data)
+        },
+        (error)=> {
+          console.error(error);
+        }
+        );
+      setEjecutarConsulta(false);
     }
   }, [ejecutarConsulta]);
 
@@ -124,7 +98,6 @@ const FilaVenta= ({ venta, setEjecutarConsulta }) => {
   });
 
   const actualizarVenta = async () => {
-    //enviar la info al backend
     const options = {
       method: 'PATCH',
       url: `http://localhost:5000/ventas/${venta._id}/`,
@@ -464,32 +437,7 @@ const FormularioCrecionVentas = ({setMostrarTabla, listaVentas, setVentas  }) =>
 
   const form = useRef(null);
   
-  /*const [idVenta,setIdVenta] = useState ("");
-  const [nombreCliente,setNombreCliente] = useState ("");
-  const [estado,setEstado] = useState ("");
-  const [correo,setCorreo] = useState ("");
-  const [valor,setValor] = useState ();
-  const [fechaInicial,setFechaInicial] = useState ();
-  const [fechaFinal,setFechaFinal] = useState ();
-  const [responsable,setResponsable] = useState ("");
-  const [producto,setProducto] = useState ("");*/
   
-  /*const enviarBack = () =>{
-    console.log("Datos enviados al backend", producto, fechaInicial, fechaFinal )
-    toast.success("Guardado con exito")
-    funcParaMostrarTabla(true)
-    funcParaAgregarVenta([...listaVentas, {
-      idVenta: idVenta,
-      nombreCl: nombreCliente,
-      Estado: estado,
-      correo: correo,
-      valor: valor,
-      fechaI: fechaInicial,
-      fechaF: fechaFinal,
-      responsable: responsable,
-      producto: producto
-    }])
-  }*/
 
   
 
@@ -502,13 +450,8 @@ const FormularioCrecionVentas = ({setMostrarTabla, listaVentas, setVentas  }) =>
       nuevaVenta[key] = value;
       console.log(nuevaVenta[key], key)
     });
-
-    const options = {
-      method: 'POST',
-      url: 'http://localhost:5000/ventas/',
-      headers: { 'Content-Type': 'application/json' },
-      //data la informacion que pide del backend
-      data: {  
+    await crearVenta(
+      {
         idVenta: nuevaVenta.idVenta,
         nombreCl: nuevaVenta.nombreCl,
         Estado: nuevaVenta.Estado,
@@ -517,33 +460,36 @@ const FormularioCrecionVentas = ({setMostrarTabla, listaVentas, setVentas  }) =>
         fechaI: nuevaVenta.fechaI,
         fechaF: nuevaVenta.fechaF,
         responsable: nuevaVenta.responsable,
-        producto: nuevaVenta.producto },
-    };
+        producto: nuevaVenta.producto,
+    },
+     
+     (response)=>{
+       console.log(response.data)
+       toast.success('Venta Registrada Con Exito');
+       obtenerVentas(
+        (response)=> {
+          setVentas(response.data)
+        },
+        (error)=> {
+          console.error(error);
+        }
+        );
 
-    await axios
-      .request(options)
-      .then(function (response) {
-        console.log(response.data);
-        toast.success('Venta creada con exito');
-      })
-      .catch(function (error) {
-        console.error(error);
-        toast.error('Error al registrar la venta');
-      });
+        
+      },
+     (error)=>{
+       console.log(error)
+     toast.error('Error En la creacion de la venta');
+     }
+     );
+    
+  
+    
 
     setMostrarTabla(true);
   };
 
-    /*
-    const nuevaVenta = {}
-    fd.forEach((value, key) => {
-      nuevaVenta[key] = value
-    });*/
-    /*
-    setMostrarTabla(true)
-    console.log('datos form enviados' , nuevaVenta)
-    toast.success("Venta guardada correctamente")
-    setVentas([...listaVentas, nuevaVenta])*/
+   
 
   return(
     <div className='flex flex-col items-center justify-center'>
