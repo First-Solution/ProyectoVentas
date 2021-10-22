@@ -9,6 +9,7 @@
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "axios": "^0.23.0",
+    "heroku": "^7.59.1",
     "material-ui": "^0.20.2",
     "nanoid": "^3.1.30",
     "react": "^17.0.2",
@@ -25,6 +26,10 @@
     "test": "craco test",
     "eject": "react-scripts eject"
   },
+  "engines":{
+      "node": "14.x"
+    },
+
   "eslintConfig": {
     "extends": [
       "react-app",
