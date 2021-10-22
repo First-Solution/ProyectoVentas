@@ -33,9 +33,18 @@ import VendedorP from 'pages/Vendedor/perfil';
 import VRegistroV from "pages/Vendedor/registrarV";
 import VEditV from "pages/Vendedor/editarventa";
 
+import { Auth0Provider } from "@auth0/auth0-react"
+
 function App() {
   return (
-    <Router>
+    <Auth0Provider
+      domain='firstsolution-proyventas.us.auth0.com'
+      clientId='T0DBfOUlgSC0sV9QbcTxFtWx1mLINKJp'
+      redirectUri={window.location.origin}
+    
+    
+    >
+      <Router>
       <Switch>
       <Route path = {['/Admin','/Admin/Productos','/Admin/Ventas','/Admin/Usuarios','/Admin/Perfil','/Admin/RegistroUsuario','/Admin/RegistroVentas','/Admin/RegistroProducto','/Admin/EditarVenta','/Admin/EditarProducto','/Admin/EditarUsuario']}>
         <LayoutAU>
@@ -118,6 +127,7 @@ function App() {
         
       </Switch>      
     </Router>
+    </Auth0Provider>
   );
 }
 
