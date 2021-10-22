@@ -1,12 +1,12 @@
 
-
+import React, {useEffect, useState, useRef} from "react";
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Link
 } from "react-router-dom";
-
+import PrivateComponent from "components/privateComponent";
 import './App.css';
 import Index from 'pages';
 import Login from 'pages/login';
@@ -25,7 +25,9 @@ import Vventas from 'pages/Vendedor/ventas';
 import Vendedor from 'pages/Vendedor/index';
 import VendedorP from 'pages/Vendedor/perfil';
 import { Auth0Provider } from "@auth0/auth0-react";
+import { UserContext } from "components/context/userContext";
 function App() {
+  const [userData,setUserData] = useState({});
   return (
     <Auth0Provider
     domain="firstsolution-proyventas.us.auth0.com"
@@ -33,6 +35,7 @@ function App() {
     redirectUri={"http://localhost:3000/Admin"}
     audience = 'api-autenticacion-ventas-mintic'
     >
+      <UserContext.Provider value = {{userData,setUserData}}>
     <Router>
       <Switch>
       <Route path = {['/Admin','/Admin/Productos','/Admin/Ventas','/Admin/Usuarios','/Admin/Perfil']}>
@@ -51,7 +54,9 @@ function App() {
                 <AdminP />
               </Route>
               <Route path='/Admin'>
+               
                 <Admin />
+              
               </Route>
             </Switch>
         </LayoutAU>
@@ -92,7 +97,7 @@ function App() {
         
       </Switch>      
     </Router>
-
+    </UserContext.Provider>
     </Auth0Provider>
   );
 }

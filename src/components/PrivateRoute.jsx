@@ -2,8 +2,11 @@ import { useAuth0 } from "@auth0/auth0-react";
 import React, {useEffect} from "react";
 import { Link } from 'react-router-dom';
 import ReactLoading from 'react-loading';
+import { obtenerDatosUsuario } from "utils/api";
+import { useUser } from "./context/userContext";
 const PrivateRoute = ({children})=>{
     const { user, isAuthenticated, isLoading,loginWithRedirect,getAccessTokenSilently } = useAuth0(); 
+    const {setUserData} = useUser();
    useEffect(()=>{
     const fetchAuth0Token = async ()=>{
         if(localStorage.getItem('token')){
@@ -18,6 +21,14 @@ const PrivateRoute = ({children})=>{
         });
         localStorage.setItem('token',accessToken);
         console.log(accessToken);
+        await obtenerDatosUsuario((response)=>{
+
+            setUserData(response.data);
+        },
+        (err)=>{
+            console.log('err',err);
+        }
+        );
     }
             if(isAuthenticated){
                 

@@ -8,7 +8,7 @@ import { nanoid } from 'nanoid';
 import { obtenerUsuarios } from 'utils/api'
 import {Dialog, Tooltip} from '@material-ui/core'
 import { crearUsuario } from "utils/api";
-
+import PrivateComponent from "./privateComponent";
  const RegistroU = () => {
   const [mostrarTabla, setMostrarTabla] = useState(true)
   const [usuarios, setUsuarios] = useState([])
@@ -50,7 +50,9 @@ import { crearUsuario } from "utils/api";
 
   return(
     <div>
+       {/* <PrivateComponent roleList = {['Admin','Vendedor']}>
       <h2 className="text-3xl font-extrabold text-gray-700">Pagina de administración de usuarios</h2>
+      </PrivateComponent> */}
       {mostrarTabla ? (<TablaUsuaios listaUsuarios = {usuarios} setEjecutarConsulta={setEjecutarConsulta} />) :( <FormularioCrecionUsuarios 
       setMostrarTabla ={setMostrarTabla} 
       listaUsuarios={usuarios}
@@ -86,11 +88,11 @@ import { crearUsuario } from "utils/api";
             const [edit, setEdit] = useState(false)
             const [openDialog, setOpenDialog] = useState(false);
             const [infoNuevoUsuario, setInfoNuevoUsuario] = useState({
-              idUsuario:usuario.idUsuario,
-              nombreCl:usuario.nombreCl,
+              idUsuario:usuario._id,
+              nombreCl:usuario.name,
               Estado : usuario.Estado,
-              correo: usuario.correo,
-              rol: usuario.rol
+              correo: usuario.email,
+              rol: usuario.rol,
             });
           
             const actualizarUsuario = async () => {
@@ -154,17 +156,10 @@ import { crearUsuario } from "utils/api";
                         className = 'bg-gray-50 border border-gray-600 p-2 rounded-lg m-2' 
                         type='text' 
                         value={infoNuevoUsuario.nombreCl}
-                        onChange={(e) => setInfoNuevoUsuario({ ...infoNuevoUsuario, nombreCl: e.target.value })}
+                        onChange={(e) => setInfoNuevoUsuario({ ...infoNuevoUsuario, name: e.target.value })}
                       />
                     </td>
-                    <td>
-                      <input 
-                        className = 'bg-gray-50 border border-gray-600 p-2 rounded-lg m-2' 
-                        type='text' 
-                        value={infoNuevoUsuario.correo}
-                        onChange={(e) => setInfoNuevoUsuario({ ...infoNuevoUsuario, correo: e.target.value })}
-                      />
-                    </td>
+                    
                     <td>
                       <select 
                         className = 'bg-gray-50 border border-gray-600 p-2 rounded-lg m-2'
@@ -196,20 +191,20 @@ import { crearUsuario } from "utils/api";
                   <>
           
                       <td className="px-6 py-4 whitespace-nowrap">
-                            <p className="text-sm text-gray-500">{usuario.idUsuario}</p>
+                            <p className="text-sm text-gray-500">{usuario.id}</p>
                       </td>
           
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="flex items-center">
                           <div className="flex-shrink-0 h-10 w-10">
-                            <img className="h-10 w-10 rounded-full" src={im} alt=""/>
+                            <img className="h-10 w-10 rounded-full" src={usuario.picture} alt=""/>
                           </div>
                           <div className="ml-4">
                             <div className="text-sm font-medium text-gray-900">
-                              {usuario.nombreCl}
+                              {usuario.name}
                             </div>
                               <div className="text-sm text-gray-500">
-                                {usuario.correo}
+                                {usuario.email}
                               </div>
                           </div>
                         </div>
@@ -381,7 +376,7 @@ import { crearUsuario } from "utils/api";
               await crearUsuario(
                 {
                 idUsuario: nuevoUsuario.idUsuario,
-                nombreCl:nuevoUsuario.nombreCl,
+                nombreCl:nuevoUsuario.name,
                 Estado : nuevoUsuario.Estado,
                 correo: nuevoUsuario.correo,
                 rol: nuevoUsuario.rol,
@@ -390,14 +385,7 @@ import { crearUsuario } from "utils/api";
                (response)=>{
                  console.log(response.data)
                  toast.success('Usuario Registrado Con Exito');
-                 obtenerUsuarios(
-                  (response)=> {
-                    setUsuarios(response.data)
-                  },
-                  (error)=> {
-                    console.error(error);
-                  }
-                  );
+
                 },
                (error)=>{
                  console.log(error)
