@@ -1,6 +1,6 @@
 import React from 'react';
 import { useUser } from './context/userContext';
-import Index from 'pages';
+
 
 const PrivateComponent = ({roleList,children}) =>{
    // const {userData} = useUser();
