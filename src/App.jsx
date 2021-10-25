@@ -6,7 +6,7 @@ import {
   Route,
   Link
 } from "react-router-dom";
-import PrivateComponent from "components/privateComponent";
+
 import './App.css';
 import Index from 'pages';
 import Login from 'pages/login';
@@ -26,6 +26,8 @@ import Vendedor from 'pages/Vendedor/index';
 import VendedorP from 'pages/Vendedor/perfil';
 import { Auth0Provider } from "@auth0/auth0-react";
 import { UserContext } from "components/context/userContext";
+import PrivateRoute from "components/PrivateRoute";
+
 function App() {
   const [userData,setUserData] = useState({});
   return (
@@ -35,28 +37,39 @@ function App() {
     redirectUri={"http://localhost:3000/Admin"}
     audience = 'api-autenticacion-ventas-mintic'
     >
-      <UserContext.Provider value = {{userData,setUserData}}>
+      
+    <UserContext.Provider value = {{userData,setUserData}}>
     <Router>
       <Switch>
       <Route path = {['/Admin','/Admin/Productos','/Admin/Ventas','/Admin/Usuarios','/Admin/Perfil']}>
         <LayoutAU>
             <Switch>
               <Route path='/Admin/Ventas' >
-                <Ventas />
+                <PrivateRoute roleList = {['Admin']}>
+                  <Ventas />
+                </PrivateRoute>
+                
               </Route>
               <Route path='/Admin/Productos' >
+              <PrivateRoute roleList = {['Admin']}>
                 <Productos />
+                </PrivateRoute>
               </Route>
+              
               <Route path='/Admin/Usuarios' >
+              <PrivateRoute roleList = {['Admin']}>
                 <Usuarios />
+                </PrivateRoute >
               </Route>
               <Route path='/Admin/Perfil' >
+              <PrivateRoute roleList = {['Admin']}>
                 <AdminP />
+                </PrivateRoute>
               </Route>
               <Route path='/Admin'>
-               
+              <PrivateRoute roleList = {['Admin']}>
                 <Admin />
-              
+                </PrivateRoute>
               </Route>
             </Switch>
         </LayoutAU>
@@ -65,13 +78,19 @@ function App() {
         <LayoutU>
             <Switch>
               <Route path='/Vendedor/Ventas' >
+              <PrivateRoute roleList = {['Vendedor']}>
                 <Vventas />
+                </PrivateRoute>
               </Route>
               <Route path='/Vendedor/Perfil' >
+              <PrivateRoute roleList = {['Vendedor']}>
                 <VendedorP />
+                </PrivateRoute>
               </Route>
               <Route path='/Vendedor' >
+              <PrivateRoute roleList = {['Vendedor']}>
                 <Vendedor/>
+                </PrivateRoute>
               </Route>
             </Switch>
         </LayoutU>

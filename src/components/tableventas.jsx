@@ -8,7 +8,7 @@ import { obtenerVentas } from 'utils/api'
 import {Dialog, Tooltip} from '@material-ui/core'
 import { crearVenta } from "utils/api";
 
-
+import PrivateComponent from "components/PrivateComponent";
 
 
 const RegistroV = () => {
@@ -278,6 +278,7 @@ const FilaVenta= ({ venta, setEjecutarConsulta }) => {
             </td>
         </>
       )}
+      <PrivateComponent roleList = {['Admin']}>   
       <td>
         <div className='flex w-full justify-around'>
           {edit ? (
@@ -334,6 +335,7 @@ const FilaVenta= ({ venta, setEjecutarConsulta }) => {
           </div>
         </Dialog>
       </td>
+      </PrivateComponent>   
     </tr>
 
     
@@ -403,11 +405,11 @@ const TablaVentas = ({ listaVentas, setEjecutarConsulta }) => {
           <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
             Producto
           </th>
-
+          <PrivateComponent roleList = {['Admin']}>   
           <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
             Editar/Eliminar
           </th>
-
+          </PrivateComponent>   
           </thead>
 
           <tbody>

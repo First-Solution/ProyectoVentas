@@ -8,7 +8,7 @@ import { nanoid } from 'nanoid';
 import { obtenerUsuarios } from 'utils/api'
 import {Dialog, Tooltip} from '@material-ui/core'
 import { crearUsuario } from "utils/api";
-import PrivateComponent from "./privateComponent";
+import PrivateComponent from "components/PrivateComponent";
  const RegistroU = () => {
   const [mostrarTabla, setMostrarTabla] = useState(true)
   const [usuarios, setUsuarios] = useState([])
@@ -71,14 +71,18 @@ import PrivateComponent from "./privateComponent";
       />
 
    
-
-      <button  type = "button" onClick={()=>setMostrarTabla(!mostrarTabla)} className="sm:auto mx-auto ml-8 whitespace-nowrap px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-900 hover:bg-indigo-700">
-      {textoBoton}
-      </button>
+ 
     </div>
+    
   )
 }
-
+ /*<PrivateComponent roleList = {['Developer']}>   
+        <div>
+        <button  type = "button" onClick={()=>setMostrarTabla(!mostrarTabla)} className="sm:auto mx-auto ml-8 whitespace-nowrap px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-900 hover:bg-indigo-700">
+        {textoBoton}
+        </button>
+        </div>
+      </PrivateComponent>  */
     
 
 

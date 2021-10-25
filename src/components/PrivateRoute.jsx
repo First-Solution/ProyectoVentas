@@ -1,11 +1,36 @@
-import { useAuth0 } from "@auth0/auth0-react";
-import React, {useEffect} from "react";
-import { Link } from 'react-router-dom';
-import ReactLoading from 'react-loading';
-import { obtenerDatosUsuario } from "utils/api";
-import { useUser } from "./context/userContext";
-const PrivateRoute = ({children})=>{
-    const { user, isAuthenticated, isLoading,loginWithRedirect,getAccessTokenSilently } = useAuth0(); 
+import React from 'react';
+import { useUser } from './context/userContext';
+import IndexA from 'pages/Admin/index';
+import Index from 'pages'; 
+import IndexV from 'pages/Vendedor/index';
+const PrivateRoute = ({roleList,children}) =>{
+    const {userData} = useUser();
+    console.log("User DATA en el PRIVATE COMPONENT",userData);
+   if(roleList.includes(userData.rol)){
+        return (
+            children
+        );
+   }
+  
+    return(
+            
+               <div><div className ="text-9xl text-red-500">No estás autorizado para ver este sitio</div>
+               
+               </div>
+            
+
+    );
+
+    }
+export default PrivateRoute
+/*
+ {(userData.rol ="Admin")?
+               <Link to ="/Admin" ></Link>:
+                userData.rol = "Vendedor"? <Link to ="/Vendedor" ></Link>:
+                <Link to ="/" ></Link>
+                }
+                
+                const { user, isAuthenticated, isLoading,loginWithRedirect,getAccessTokenSilently } = useAuth0(); 
     const {setUserData} = useUser();
    useEffect(()=>{
     const fetchAuth0Token = async ()=>{
@@ -21,8 +46,8 @@ const PrivateRoute = ({children})=>{
         });
         localStorage.setItem('token',accessToken);
         console.log(accessToken);
-        await obtenerDatosUsuario((response)=>{
-
+        await obtenerDatosUsuario(
+            (response)=>{
             setUserData(response.data);
         },
         (err)=>{
@@ -43,8 +68,5 @@ const PrivateRoute = ({children})=>{
    if(!isAuthenticated){
        return loginWithRedirect();
    }
-   return<>{children}</>
+   return<>{children}</>*/
    // return isAuthenticated ? <>{children}</>:<div><div className ="text-9xl text-red-500">No estás autorizado para ver este sitio</div><Link to ="/" >Llevame Al Login</Link></div>
-
-}
-export default PrivateRoute;
