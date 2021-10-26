@@ -2,7 +2,7 @@ import Header from "components/headeradmin";
 import Footer from "components/footer";
 import PrivateRoute from 'components/PrivateRoute'
 const LayoutU = ({children}) => {
-    return(<PrivateRoute>
+    return(<PrivateRoute roleList = {['Admin']}>
         <div className= "Maincontainer max-w-7xl mx-auto px-4 py-6 sm:px-6">
 
         <Header/>

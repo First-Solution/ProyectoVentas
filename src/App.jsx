@@ -1,5 +1,5 @@
 
-
+import React, {useEffect, useState, useRef} from "react";
 import {
   BrowserRouter as Router,
   Switch,
@@ -25,7 +25,11 @@ import Vventas from 'pages/Vendedor/ventas';
 import Vendedor from 'pages/Vendedor/index';
 import VendedorP from 'pages/Vendedor/perfil';
 import { Auth0Provider } from "@auth0/auth0-react";
+import { UserContext } from "components/context/userContext";
+import PrivateRoute from "components/PrivateRoute";
+
 function App() {
+  const [userData,setUserData] = useState({});
   return (
     <Auth0Provider
     domain="firstsolution-proyventas.us.auth0.com"
@@ -33,9 +37,12 @@ function App() {
     redirectUri={"http://localhost:3000/Admin"}
     audience = 'api-autenticacion-ventas-mintic'
     >
+      
+    <UserContext.Provider value = {{userData,setUserData}}>
     <Router>
       <Switch>
       <Route path = {['/Admin','/Admin/Productos','/Admin/Ventas','/Admin/Usuarios','/Admin/Perfil']}>
+      <PrivateRoute roleList = {['Admin']}>
         <LayoutAU>
             <Switch>
               <Route path='/Admin/Ventas' >
@@ -51,12 +58,16 @@ function App() {
                 <AdminP />
               </Route>
               <Route path='/Admin'>
+               
                 <Admin />
+              
               </Route>
             </Switch>
         </LayoutAU>
+        </PrivateRoute>
         </Route>
         <Route path = {['/Vendedor','/Vendedor/Ventas','/Vendedor/Perfil']}>
+        <PrivateRoute roleList = {['Vendedor']}>
         <LayoutU>
             <Switch>
               <Route path='/Vendedor/Ventas' >
@@ -70,6 +81,7 @@ function App() {
               </Route>
             </Switch>
         </LayoutU>
+        </PrivateRoute>
         </Route>
         <Route path = {['/login']}>
           <LayoutAuth>
@@ -92,7 +104,7 @@ function App() {
         
       </Switch>      
     </Router>
-
+    </UserContext.Provider>
     </Auth0Provider>
   );
 }
