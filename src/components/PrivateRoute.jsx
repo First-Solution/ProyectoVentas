@@ -1,5 +1,5 @@
 import { useAuth0 } from "@auth0/auth0-react";
-import React, {useEffect} from "react";
+import React, {useEffect,useState} from "react";
 import { Link } from 'react-router-dom';
 import ReactLoading from 'react-loading';
 import { obtenerDatosUsuario } from "utils/api";
@@ -9,7 +9,8 @@ const PrivateRoute = ({roleList,children})=>{
 
     const {userData} = useUser();
     console.log("User DATA en el PRIVATE Rout",userData);
-    const { user, isAuthenticated, isLoading,loginWithRedirect,getAccessTokenSilently ,logout} = useAuth0(); 
+    const { user, isAuthenticated, isLoading,loginWithRedirect,getAccessTokenSilently ,logout,isLoadingUser} = useAuth0(); 
+    const [loadingInformation,setLoadingInformation] = useState(false);
     const {setUserData} = useUser();
    useEffect(()=>{
     const fetchAuth0Token = async ()=>{
@@ -23,13 +24,17 @@ const PrivateRoute = ({roleList,children})=>{
             
         });
         localStorage.setItem('token',accessToken);
+        setLoadingInformation(true);
         console.log(accessToken);
         await obtenerDatosUsuario((response)=>{
 
             setUserData(response.data);
+            setLoadingInformation(false);
         },
         (err)=>{
+            setLoadingInformation(false);
                 logout({ returnTo: 'http://localhost:3000/' })
+                
         }
         );
     }
@@ -42,7 +47,7 @@ const PrivateRoute = ({roleList,children})=>{
    
    
    
-    if(isLoading){
+    if(isLoading||loadingInformation){
         return <div><ReactLoading type={"cylon"} color={"#818CF8"} height={667} width={375} /></div>
     }
    if(!isAuthenticated){
