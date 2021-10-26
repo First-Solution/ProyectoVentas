@@ -8,7 +8,7 @@ import { nanoid } from 'nanoid';
 import { obtenerUsuarios } from 'utils/api'
 import {Dialog, Tooltip} from '@material-ui/core'
 import { crearUsuario } from "utils/api";
-//import PrivateComponent from "components/PrivateComponent";
+import PrivateComponent from "components/PrivateComponent";
  const RegistroU = () => {
   const [mostrarTabla, setMostrarTabla] = useState(true)
   const [usuarios, setUsuarios] = useState([])
