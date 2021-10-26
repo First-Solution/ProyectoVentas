@@ -52,12 +52,15 @@ return(
                   
                 </button>
               </div>
+              
             <div className="ml-3 relative">
               <div>
                 <button type="button" className="max-w-xs bg-indigo-500  rounded-full flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                   <span className="sr-only">Open user menu</span>
-                 
-                 
+                                
+                  <Link to = '/Admin/Perfil'>
+                  <img className="h-8 w-8 rounded-full" src={user.picture} alt=""/>
+                  </Link>
                   
                 </button>
               </div>

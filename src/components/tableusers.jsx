@@ -147,6 +147,7 @@ import PrivateComponent from "components/PrivateComponent";
               <tr>
                 {edit ? (
                   <>
+                  
                     <td>
                       <input 
                         className = 'bg-gray-50 border border-gray-600 p-2 rounded-lg m-2' 
@@ -174,9 +175,12 @@ import PrivateComponent from "components/PrivateComponent";
 
                         <option disabled value={0}>Seleccione una opción</option>
                         <option >Activo</option>
-                        <option >Inactivo</option>
+                     <option >Inactivo</option>
+                     <option >Pendiente</option>
                       </select>
                     </td>
+                   
+                    
                     <td>
                       <select 
                         className = 'bg-gray-50 border border-gray-600 p-2 rounded-lg m-2'
@@ -186,10 +190,12 @@ import PrivateComponent from "components/PrivateComponent";
                         >
 
                         <option disabled value={0}>Seleccione una opción</option>
+                        <option >Sin rol</option>
                         <option >Admin</option>
                         <option >Vendedor</option>
                       </select>
                     </td>
+                   
                   </>
                 ) : (
                   <>
@@ -431,10 +437,10 @@ import PrivateComponent from "components/PrivateComponent";
                       name='Estado'
                       defaultValue={0}
                       >
-          
                      <option disabled value={0}>Seleccione una opción</option>
                      <option >Activo</option>
                      <option >Inactivo</option>
+                     <option >Pendiente</option>
                    </select>
                  </label>
                  <label htmlFor="rol usuario" className='flex flex-col'>
@@ -446,6 +452,7 @@ import PrivateComponent from "components/PrivateComponent";
                       >
           
                      <option disabled value={0}>Seleccione una opción</option>
+                     <option >Sin rol</option>
                      <option >Admin</option>
                      <option >Vendedor</option>
                    </select>

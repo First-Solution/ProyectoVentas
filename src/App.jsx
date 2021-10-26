@@ -42,58 +42,46 @@ function App() {
     <Router>
       <Switch>
       <Route path = {['/Admin','/Admin/Productos','/Admin/Ventas','/Admin/Usuarios','/Admin/Perfil']}>
+      <PrivateRoute roleList = {['Admin']}>
         <LayoutAU>
             <Switch>
               <Route path='/Admin/Ventas' >
-                <PrivateRoute roleList = {['Admin']}>
-                  <Ventas />
-                </PrivateRoute>
-                
+                <Ventas />
               </Route>
               <Route path='/Admin/Productos' >
-              <PrivateRoute roleList = {['Admin']}>
                 <Productos />
-                </PrivateRoute>
               </Route>
-              
               <Route path='/Admin/Usuarios' >
-              <PrivateRoute roleList = {['Admin']}>
                 <Usuarios />
-                </PrivateRoute >
               </Route>
               <Route path='/Admin/Perfil' >
-              <PrivateRoute roleList = {['Admin']}>
                 <AdminP />
-                </PrivateRoute>
               </Route>
               <Route path='/Admin'>
-              <PrivateRoute roleList = {['Admin']}>
+               
                 <Admin />
-                </PrivateRoute>
+              
               </Route>
             </Switch>
         </LayoutAU>
+        </PrivateRoute>
         </Route>
         <Route path = {['/Vendedor','/Vendedor/Ventas','/Vendedor/Perfil']}>
+        <PrivateRoute roleList = {['Vendedor']}>
         <LayoutU>
             <Switch>
               <Route path='/Vendedor/Ventas' >
-              <PrivateRoute roleList = {['Vendedor']}>
                 <Vventas />
-                </PrivateRoute>
               </Route>
               <Route path='/Vendedor/Perfil' >
-              <PrivateRoute roleList = {['Vendedor']}>
                 <VendedorP />
-                </PrivateRoute>
               </Route>
               <Route path='/Vendedor' >
-              <PrivateRoute roleList = {['Vendedor']}>
                 <Vendedor/>
-                </PrivateRoute>
               </Route>
             </Switch>
         </LayoutU>
+        </PrivateRoute>
         </Route>
         <Route path = {['/login']}>
           <LayoutAuth>
