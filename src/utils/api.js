@@ -1,11 +1,13 @@
 import axios from 'axios';
 
+const baseURL = "https://vast-falls-07175.herokuapp.com"
+
 const getToken = ()=>{
 
 return `Bearer ${localStorage.getItem('token')}`;
 }
 export const obtenerVentas = async (successCallback,errorCallback) => {
-  const options = { method: 'GET', url: 'http://localhost:5000/ventas/',
+  const options = { method: 'GET', url: `${baseURL}/ventas/`,
   headers : { 
     Authorization: getToken(),
   }, 
@@ -22,7 +24,7 @@ export const obtenerVentas = async (successCallback,errorCallback) => {
     );
 };
 export const obtenerProductos = async (successCallback,errorCallback) => {
-  const options = { method: 'GET', url: 'http://localhost:5000/productos/',
+  const options = { method: 'GET', url: `${baseURL}/productos/`,
   headers : { 
     Authorization: getToken(),
   }, };
@@ -38,7 +40,7 @@ export const obtenerProductos = async (successCallback,errorCallback) => {
 };
 
 export const obtenerUsuarios = async (successCallback,errorCallback) => {
-  const options = { method: 'GET', url: 'http://localhost:5000/usuarios/' ,
+  const options = { method: 'GET', url: `${baseURL}/usuarios/` ,
   headers : { 
     Authorization: getToken(),
   }, };
@@ -53,7 +55,7 @@ export const obtenerUsuarios = async (successCallback,errorCallback) => {
     );
 };
 export const obtenerDatosUsuario = async (successCallback,errorCallback) => {
-  const options = { method: 'GET', url: 'http://localhost:5000/usuarios/self' ,
+  const options = { method: 'GET', url: `${baseURL}/usuarios/self` ,
   headers : { 
     Authorization: getToken(),
   }, };
@@ -70,7 +72,7 @@ export const obtenerDatosUsuario = async (successCallback,errorCallback) => {
 export const crearUsuario = async(data,successCallback,errorCallback)=>{
   const options = {
     method: 'POST',
-    url: 'http://localhost:5000/usuarios/',
+    url: `${baseURL}/usuarios/`,
     headers: {  Authorization: getToken(),'Content-Type': 'application/json',
    },data,
   }
@@ -87,7 +89,7 @@ export const crearUsuario = async(data,successCallback,errorCallback)=>{
 export const crearVenta = async(data,successCallback,errorCallback)=>{
   const options = {
     method: 'POST',
-    url: 'http://localhost:5000/ventas/',
+    url: `${baseURL}/ventas/`,
     headers: {  Authorization: getToken(),'Content-Type': 'application/json',
    },data,
   }
@@ -105,7 +107,7 @@ export const crearVenta = async(data,successCallback,errorCallback)=>{
 export const crearProducto = async(data,successCallback,errorCallback)=>{
   const options = {
     method: 'POST',
-    url: 'http://localhost:5000/productos/',
+    url: `${baseURL}/productos/`,
     headers: {  Authorization: getToken(),'Content-Type': 'application/json',
    },data,
   }
