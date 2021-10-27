@@ -88,6 +88,8 @@ import { crearUsuario } from "utils/api";
 
           const FilaUsuario= ({ usuario, setEjecutarConsulta }) => {
 
+            const baseURL = "https://vast-falls-07175.herokuapp.com"
+
             const [edit, setEdit] = useState(false)
             const [openDialog, setOpenDialog] = useState(false);
             const [infoNuevoUsuario, setInfoNuevoUsuario] = useState({
@@ -102,7 +104,7 @@ import { crearUsuario } from "utils/api";
               //enviar la info al backend
               const options = {
                 method: 'PATCH',
-                url: `http://localhost:5000/usuarios/${usuario._id}/`,
+                url: `${baseURL}/usuarios/${usuario._id}/`,
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}`,'Content-Type': 'application/json' },
                 data: { ...infoNuevoUsuario},
               };
@@ -124,7 +126,7 @@ import { crearUsuario } from "utils/api";
             const eliminarUsuario = async () => {
               const options = {
                 method: 'DELETE',
-                url: `http://localhost:5000/usuarios/${usuario._id}/`,
+                url: `${baseURL}/usuarios/${usuario._id}/`,
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}`,'Content-Type': 'application/json' },
                 data: { id: usuario._id },
               };

@@ -96,6 +96,8 @@ const RegistroP = () => {
 
 const FilaProducto= ({ producto, setEjecutarConsulta }) => {
 
+  const baseURL = "https://vast-falls-07175.herokuapp.com"
+
   const [edit, setEdit] = useState(false)
   const [openDialog, setOpenDialog] = useState(false);
   const [infoNuevoProducto, setInfoNuevoProducto] = useState({
@@ -110,7 +112,7 @@ const FilaProducto= ({ producto, setEjecutarConsulta }) => {
     //enviar la info al backend
     const options = {
       method: 'PATCH',
-      url: `http://localhost:5000/productos/${producto._id}/`,
+      url: `${baseURL}/productos/${producto._id}/`,
       headers: { Authorization: `Bearer ${localStorage.getItem('token')}`,'Content-Type': 'application/json' },
       data: { ...infoNuevoProducto},
     };
@@ -132,7 +134,7 @@ const FilaProducto= ({ producto, setEjecutarConsulta }) => {
   const eliminarProducto = async () => {
     const options = {
       method: 'DELETE',
-      url: `http://localhost:5000/Productos/${producto._id}/`,
+      url: `${baseURL}/Productos/${producto._id}/`,
       headers: { Authorization: `Bearer ${localStorage.getItem('token')}`,'Content-Type': 'application/json' },
       data: { id: producto._id },
     };

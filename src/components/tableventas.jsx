@@ -83,6 +83,8 @@ const RegistroV = () => {
 
 const FilaVenta= ({ venta, setEjecutarConsulta }) => {
 
+  const baseURL = "https://vast-falls-07175.herokuapp.com"
+
   const [edit, setEdit] = useState(false)
   const [openDialog, setOpenDialog] = useState(false);
   const [infoNuevaVenta, setInfoNuevaVenta] = useState({
@@ -100,7 +102,7 @@ const FilaVenta= ({ venta, setEjecutarConsulta }) => {
   const actualizarVenta = async () => {
     const options = {
       method: 'PATCH',
-      url: `http://localhost:5000/ventas/${venta._id}/`,
+      url: `${baseURL}/ventas/${venta._id}/`,
       headers: { Authorization: `Bearer ${localStorage.getItem('token')}`,'Content-Type': 'application/json' },
       data: { ...infoNuevaVenta},
     };
@@ -122,7 +124,7 @@ const FilaVenta= ({ venta, setEjecutarConsulta }) => {
   const eliminarVenta = async () => {
     const options = {
       method: 'DELETE',
-      url: `http://localhost:5000/ventas/${venta._id}/`,
+      url: `${baseURL}/ventas/${venta._id}/`,
       headers: { Authorization: `Bearer ${localStorage.getItem('token')}`,'Content-Type': 'application/json' },
       data: { id: venta._id },
     };
