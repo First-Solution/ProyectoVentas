@@ -33,7 +33,7 @@ const PrivateRoute = ({roleList,children})=>{
         },
         (err)=>{
             setLoadingInformation(false);
-                logout({ returnTo: 'http://localhost:3000/' })
+                logout({ returnTo: 'https://dry-sierra-51774.herokuapp.com/' })
                 
         }
         );
